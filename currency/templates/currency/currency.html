@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Получение курсов валют{% endblock %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href='{% static "pages/index.css" %}'>{% endblock %}
+{% block content %}
+
+<main role="main" class="container">
+  {% csrf_token %}
+  <input id="cur__date" class="date__input card" type="date" name="calendar" value="{{ date_rate_str }}">
+  <h1>Курсы валют по состоянию на {{ date_rate_str }} г.</h1>
+  <div class="row">
+    
+    <div class class="col-md18">
+      {% for cur in currency %}
+      <div class="card">
+        <div class="card-body">
+          
+            {{cur.nominal }} {{cur.currency.name }} - {{cur.value }}
+          
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+{% endblock %}
+{% block js %}
+<script src="{% static '/js/config/config.js' %}"></script>
+<script src="{% static '/js/utils/debouncing.js' %}"></script>
+<script src="{% static '/js/api/Api.js' %}"></script>
+<script src="{% static 'currency.js' %}"></script>
+
+{% endblock %}

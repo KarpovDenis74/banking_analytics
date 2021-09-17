@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Банки{% endblock %}
+{% block content %}
+
+<main role="main" class="container">
+  <h1> Кредитные организации </h1>
+  <div class="row">
+    <div class="col-md-3 mb-3 mt-1">
+      <div class="card">
+        <div class="card-body">
+          {% for cur in currency %}
+            <div class="h2">
+              Курсы валют
+              <p>{{ cur }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
