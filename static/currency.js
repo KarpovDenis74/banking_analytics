@@ -1,19 +1,28 @@
-const currentRow = document.querySelector('.card');
-const rateDate = document.querySelector('.date__input');
+const currencyCard = document.querySelector('tbody');
+const rateDate = document.querySelector('#cur__date');
 const api = new Api(apiUrl);
 
 const cbEventInput = (elem) => {
-    return api.getIngredients(elem.target.value).then(e => {
-        console.log(elem)
-        if (e.length !== 0) {
-            const items = e.map(elem => {
-                return `${elem.nominal}"">${elem.value}</a>`
-            }).join(' ')
-            currentRow.style.display = 'flex';
-            currentRow.innerHTML = items;
+    return api.getCurrency(elem.target.value).then(e => {
+
+        if (e.results.length !== 0) {
+            let temp
+            for (let i = 0, e.results.length, ++) {
+                temp += `<tr>
+                            <th scope="row">'${i+1}'</th>
+                            <td>'${e.results[i].nominal}'</td>
+                            <td>'${e.results[i].currency.name}'</td>
+                            <td>'${e.results[i].value}'</td>
+                        </tr>`
+            }
+            currencyCard.innerHTML = temp;
         }
+        
     })
         .catch(e => {
+            currentCard.innerHTML = '<div class="card">' +
+                '<div class="card-body" >' +
+                '<div class="col-md12">' + 'Нет данных на эту дату' + '</div></div></div >';
             console.log(e)
         })
 };

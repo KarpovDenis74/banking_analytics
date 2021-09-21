@@ -13,14 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
-
 from currency.views import CurrencyMode
+from django.urls import path
 
 app_name = 'banks'
 
 urlpatterns = [
-    path('currency/<int:cur_day>/',
-         CurrencyMode.get_currency_for_day,
-         name='currency_for_day'),
+    
 ]

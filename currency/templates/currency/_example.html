@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Получение курсов валют{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href='{% static "pages/index.css" %}'>{% endblock %}
+{% block content %}
+
+<main role="main" class="main container">
+  <div class="row justify-content-center">
+    <h1 class="h1 col-12 col-md-7 align-self-start">Курсы валют по состоянию на</h1>
+    <h1><input id="cur__date" class="date__input card col-12 col-md-5 align-self-end" type="date" name="calendar"
+            value="{{ date_rate_str }}">
+    </h1>
+  </div> 
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <p>1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis quos quod, a sit facere veritatis.</p>
+    </div>
+    <div class="col-12 col-md-4">
+      <p>2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt libero quaerat rerum tempora dolor deleniti.</p>
+    </div>
+    <div class="col-12 col-md-4">
+      <p> 3 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat reiciendis saepe architecto ipsum nobis repellat.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-title"> Заголовок каррточки</div>
+        <p>card col-12 col-md-4  lor sit amet consectetur adipisicing elit. Provident, quaerat beatae odit vitae suscipit nemo.</p>
+        <div class="card-body">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam natus aperiam asperiores temporibus, veritatis fugit?</p>
+          <p>Vitae nihil ea consequuntur quidem, doloremque quis excepturi in veritatis sapiente temporibus libero vel totam.</p>
+          <p>Maiores quos rerum molestiae reiciendis, impedit ducimus at necessitatibus enim quae earum, delectus, molestias soluta!</p>
+          <p>Quos modi quam fugit rem fugiat atque debitis, eaque, eum omnis laborum, at voluptatibus ea?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+{% block js %}
+<script src="{% static '/js/config/config.js' %}"></script>
+<script src="{% static '/js/utils/debouncing.js' %}"></script>
+<script src="{% static '/js/api/Api.js' %}"></script>
+<script src="{% static 'currency.js' %}"></script>
+
+{% endblock %}

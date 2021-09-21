@@ -4,24 +4,33 @@
 {% block css %}<link rel="stylesheet" href='{% static "pages/index.css" %}'>{% endblock %}
 {% block content %}
 
-<main role="main" class="container">
+<main class="container">
   {% csrf_token %}
-  <input id="cur__date" class="date__input card" type="date" name="calendar" value="{{ date_rate_str }}">
-  <h1>Курсы валют по состоянию на {{ date_rate_str }} г.</h1>
   <div class="row">
-    
-    <div class class="col-md18">
-      {% for cur in currency %}
-      <div class="card">
-        <div class="card-body">
-          
-            {{cur.nominal }} {{cur.currency.name }} - {{cur.value }}
-          
-        </div>
-      </div>
-      {% endfor %}
-    </div>
+  <h1>Курсы валют по состоянию на <input id="cur__date" class="date__input card" type="date" name="calendar" value="{{ date_rate_str }}"></h1>
   </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col-1">#</th>
+          <th scope="col-1">Номинал</th>
+          <th scope="col-5">Наименованиев валюты</th>
+          <th scope="col-5">Курс</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cur in currency %}
+          <tr>        
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{cur.nominal }}</td>
+            <td>{{cur.currency.name }}</td>
+            <td>{{cur.value }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
 </main>
 {% endblock %}
 {% block js %}

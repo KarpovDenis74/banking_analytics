@@ -36,7 +36,7 @@ class CurrencyMode:
             file.write(response.text)
         return file_name
 
-    def get_currency_for_day(request, cur_day):
+    def get_currency_for_day(request):
         file_name = CurrencyMode.__get_file_currency()
         parser = ET.XMLParser(encoding="utf-8")
         tree = ET.parse(file_name, parser=parser)
@@ -65,10 +65,8 @@ class CurrencyMode:
         context = {
             'currency': currency,
             'date_rate_str': date_rate_str,
-
-
         }
-        return render(request, 'currency/currency.html', context)
+        return render(request, 'currency/get_currency_for_day.html', context)
 
 
 class CurrencyView:
@@ -77,4 +75,7 @@ class CurrencyView:
         context = {
             'currency': currency,
         }
-        return render(request, 'banks/index.html', context)
+        return render(request, 'currency/currency.html', context)
+
+    def example(request):
+        return render(request, 'currency/_example.html')

@@ -1,11 +1,17 @@
 from django.urls import path
 
-from currency.views import CurrencyMode
+from currency.views import CurrencyMode, CurrencyView
 
 app_name = 'currency'
 
 urlpatterns = [
-    path('<int:cur_day>/',
+    path('',
+         CurrencyView.index,
+         name='index'),
+    path('request_courses/',
          CurrencyMode.get_currency_for_day,
-         name='currency_for_day'),
+         name='get_currency_for_day'),
+    path('example/',
+         CurrencyView.example,
+         name='example'),
 ]

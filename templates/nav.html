@@ -1,48 +1,40 @@
 <header class="header">
-    <nav class="nav">
-        <div class="nav__container container">
-            {% if user.is_authenticated %}
-            <ul class="nav__items list">
-                <li class="nav__item nav__item_activenav__item_disabled"><a
-                        href="" class="nav__link link">Курсы</a></li>
-                <li class="nav__item nav__item_activenav__item_disabled">
-                    <a href="" class="nav__link link">Курсы за день</a></li>
-                <li class="nav__item nav__item_activenav__item_disabled">
-                    <a href="{% url 'currency:currency_for_day' cur_day='1' %}" class="nav__link link">Курсы за период</a></li>
-                <li class="nav__item nav__item_activenav__item_disabled">
-                    <a href="" class="nav__link link">Избранное</a></li>
-                <li class="nav__item nav__item_activenav__item_disabled">
-                    <a href="" class="nav__link link">Список покупок</a> <span
-                        class="badge badge_style_blue nav__badge" id="counter">{{ shop_list_count }}</span></li>
+<nav class="navbar navbar-lg navbar-light">
+  <div class="nav__container container navbar navbar-expand-md">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'currency:index' %}">Аналитика</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"
+        aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {% if user.is_authenticated %}
+      
+      {% else %}
+      <div class="collapse navbar-collapse" id="navbarsExample04">
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-expanded="false">Валюта</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown04">
+              <li><a class="dropdown-item" href="{% url 'currency:index' %}">Курсы</a></li>
+              <li><a class="dropdown-item" href="{% url 'currency:get_currency_for_day' %}">Запросить курсы в ЦБ</a></li>
+              <li><a class="dropdown-item" href="{% url 'currency:example' %}">пример страницы bootstrap </a></li>
             </ul>
-            <ul class="nav__items list">
-                <li class="nav__item"><a href="" class="nav__link link">Изменить пароль</a>
-                </li>
-                <li class="nav__item"><a href="" class="nav__link link">Выход</a></li>
-            </ul>
-            {% else %}
-            <ul class="nav__items list">
-                <li class="nav__item nav__item_activenav__item_disabled"><a href="" class="nav__link link">Курсы</a></li>
-                <li class="nav__item nav__item_activenav__item_disabled">
-                    <a href="" class="nav__link link">Курсы за день</a>
-                </li>
-                <li class="nav__item nav__item_activenav__item_disabled">
-                    <a href="{% url 'currency:currency_for_day' cur_day='1' %}" class="nav__link link">Курсы за период</a>
-                </li>
-                <li class="nav__item nav__item_activenav__item_disabled">
-                    <a href="" class="nav__link link">Избранное</a>
-                </li>
-                <li class="nav__item nav__item_activenav__item_disabled">
-                    <a href="" class="nav__link link">Список покупок</a> <span class="badge badge_style_blue nav__badge"
-                        id="counter">{{ shop_list_count }}</span>
-                </li>
-            </ul>
-            <ul class="nav__items list">
-                <li class="nav__item"><a href="" class="nav__link link">Войти</a></li>
-                <li class="nav__item"><a href="" class="button button_style_blue">Создать аккаунт</a>
-                </li>
-            </ul>
-            {% endif %}
-        </div>
-    </nav>
+          <li class="nav-item active">
+            <a class="nav-link" aria-current="page" href="#">Главная</a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link" href="#">Банки</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Аналитика</a>
+          </li>
+        </ul>
+        <form>
+          <input class="form-control" type="text" placeholder="Поиск" aria-label="Search">
+        </form>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</nav>
 </header>

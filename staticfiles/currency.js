@@ -1,20 +1,32 @@
-const currentRow = document.querySelector('.card');
+const currencyCard = document.querySelector('tbody');
 const rateDate = document.querySelector('#cur__date');
 const api = new Api(apiUrl);
 
 const cbEventInput = (elem) => {
     return api.getCurrency(elem.target.value).then(e => {
-        console.log(elem)
-        if (e.length !== 0) {
-            const items = e.results.map(elem => {
-                return `<div class="card" >${elem.nominal} - ${elem.value}</div>`
-            }).join(' ')
-            currentRow.style.display = 'flex';
-            currentRow.innerHTML = items;
+
+        if (e.results.length !== 0) {
+            let temp = ' ';
+            for (let i = 1; i <= e.results.length; i++) {
+                temp = temp + `<tr>
+                            <th scope="row">${i}</th>
+                            <td>${e.results[i-1].nominal}</td>
+                            <td>${e.results[i-1].currency.name}</td>
+                            <td>${e.results[i-1].value}</td>
+                        </tr>`;
+            }
+            currencyCard.innerHTML = temp;
         }
+        
     })
         .catch(e => {
-            console.log(e)
+            currencyCard.innerHTML = `<tr>
+                            <th scope="row">-</th>
+                            <td>Нет данных на эту дату</td>
+                            <td></td>
+                            <td></td>
+                        </tr>`;
+            console.log(e);
         })
 };
 

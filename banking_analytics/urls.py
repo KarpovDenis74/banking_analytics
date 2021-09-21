@@ -30,8 +30,8 @@ urlpatterns = [
     path('teсhnologies/', views.TeсhnologiesPage.as_view(),
          name='teсhnologies'),
     path('admin/', admin.site.urls),
-    path('cbr/', include('banks.urls')),
-    path('currency/', include('currency.urls')),
+    path('banks/', include('banks.urls', namespace='banks')),
+    path('currency/', include('currency.urls', namespace='currency')),
     path('api/', include('api.urls')),
     path('', BanksView.index, name='index'),
 ]
