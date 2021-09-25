@@ -1,36 +1,41 @@
 const currencyCard = document.querySelector('tbody');
 const rateDate = document.querySelector('#cur__date');
+const currencySelect = document.querySelector('#cur__select');
 const api = new Api(apiUrl);
 
 const cbEventInput = (elem) => {
     return api.getCurrency(elem.target.value).then(e => {
-
         if (e.results.length !== 0) {
-            let temp
-            for (let i = 0, e.results.length, ++) {
-                temp += `<tr>
-                            <th scope="row">'${i+1}'</th>
-                            <td>'${e.results[i].nominal}'</td>
-                            <td>'${e.results[i].currency.name}'</td>
-                            <td>'${e.results[i].value}'</td>
-                        </tr>`
+            let temp = ' ';
+            for (let i = 1; i <= e.results.length; i++) {
+                temp = temp + `<tr>
+                    <th scope="row">${i}</th>
+                    <td>${e.results[i - 1].currency.num_code}</td>
+                    <td>${e.results[i - 1].currency.char_code}</td>
+                    <td>${e.results[i-1].nominal}</td>
+                    <td>${e.results[i-1].currency.name}</td>
+                    <td>${e.results[i-1].value} RUR</td>
+                </tr>`;
             }
             currencyCard.innerHTML = temp;
         }
-        
     })
         .catch(e => {
-            currentCard.innerHTML = '<div class="card">' +
-                '<div class="card-body" >' +
-                '<div class="col-md12">' + 'Нет данных на эту дату' + '</div></div></div >';
-            console.log(e)
+            currencyCard.innerHTML = `<tr>
+                            <th scope="row">-</th>
+                            <td>Нет данных по заданным параментрам</td>
+                            <td></td>
+                            <td></td>
+                        </tr>`;
+            console.log(e);
         })
 };
 
-const eventInput = debouncing(cbEventInput, 1000);
 
+const eventInput = debouncing(cbEventInput, 1000);
 // вешаем апи
 rateDate.addEventListener('input', eventInput);
+
 
 // const counterId = document.querySelector('#counter');
 

@@ -21,15 +21,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'corsheaders',
+    ]
+USER_APPS = [
     'api',
     'currency',
-    'banks',
-
+    'banks',    
 ]
-# USER_APPS = [
-#     'banks',
-# ]
-# INSTALLED_APPS += USER_APPS
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -40,6 +38,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+if DEBUG:
+    INSTALLED_APPS += ['debug_toolbar'] + USER_APPS
+    MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
+    INTERNAL_IPS = [
+        '127.0.0.1',
+    ]
+else:
+    INSTALLED_APPS += USER_APPS
+
 
 ROOT_URLCONF = 'banking_analytics.urls'
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
