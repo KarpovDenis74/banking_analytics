@@ -1,6 +1,9 @@
-# analitic — [«Финансовая аналитика»](http://github.com/KarpovDenis74/banking_analitics)
+# analitic — [***«Финансовая аналитика»***]
+  ===================================
+(http://github.com/KarpovDenis74/banking_analytics)
 (проект размещен на сайте )
-Проект «Финансовая аналитика»: 
+# [Проект «Финансовая аналитика»:]
+  --------------------------------
     Сайт аналитики активов финансовых организаций удобно навигированный и структурированный.
     Пользователь может получить аналитику в разрезе периодов, разделов, статей учета 
     финансовых показателей кредитных организаций. Можно посмотреть новости в разезе организаций,
@@ -10,28 +13,34 @@
     организациям. 
     Можно подписаться на выход новых данных по организации.
 
-## Подготовка к работе:
+## [Подготовка к работе:]
+-------------------------
 
 1) Скопируйте в рабочую диреторию:
+        ```
         DockerFile
         docker-compose.yaml
+        ```
 2) Создайте файл .env и заполните его своими значениями. 
-        Все нужные переменные и их примерные значения описаны файле .env.template.
+        Все нужные переменные и их примерные значения описаны файле ```.env.template```
 3) Запустите процесс сборки и запуска контейнеров:  
-        docker-compose up
+        `docker-compose up`
 4) Примените миграции, введите:  
-        docker-compose -f docker-compose.yaml exec web python manage.py migrate --noinput
+        `docker-compose -f docker-compose.yaml exec web python manage.py migrate --noinput`
 5) Создайте суперпользователя, необходимо ввести:  
-        docker-compose -f docker-compose.yaml exec web python manage.py createsuperuser
+        `docker-compose -f docker-compose.yaml exec web python manage.py createsuperuser`
 6) Добавьте  в базу ghbмеры банков и курсы валют (данные будут взяты из папки data_csv):  
+        ```
         docker-compose -f docker-compose.yaml exec web python manage.py load_banks
         docker-compose -f docker-compose.yaml exec web python manage.py load_currency
+        ```
 7) Собирите статику:  
-        docker-compose -f docker-compose.yaml exec web python manage.py collectstatic --noinput
+        `docker-compose -f docker-compose.yaml exec web python manage.py collectstatic --noinput`
 
 Готово !!! 
    
-## Технологии
+## [Технологии]
+-------------
 * [Python](https://www.python.org/) - высокоуровневый язык программирования общего назначения;
 * [Django](https://www.djangoproject.com/) - фреймворк для веб-приложений;
 * [Django REST framework](https://www.django-rest-framework.org/) - API фреймворк для Django;
