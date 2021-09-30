@@ -13,8 +13,8 @@ class Currency(models.Model):
     )
     char_code = models.CharField(
         verbose_name='Буквенный код валюты',
-        max_length=10, 
-        unique=True,      
+        max_length=10,
+        unique=True,
     )
     name = models.CharField(
         verbose_name='Наименование валюты',

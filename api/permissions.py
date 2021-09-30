@@ -8,8 +8,8 @@ class IsAdminOrReadOnly(BasePermission):
         if not request.user or not request.user.is_authenticated:
             return False
         return bool(
-            request.user.is_admin or
-            request.user.is_superuser
+            request.user.is_admin
+            or request.user.is_superuser
         )
 
 # class Permission1(BasePermission):

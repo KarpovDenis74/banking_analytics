@@ -3,11 +3,8 @@ import xml.etree.ElementTree as ET
 
 import requests
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
-from django.db.models.query_utils import select_related_descend
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse
+# from django.core.paginator import Paginator
+from django.shortcuts import render
 
 from currency.models import Currency, CurrencyRate
 
@@ -77,10 +74,8 @@ class CurrencyView:
             date=datetime.date.today())
             .select_related('currency')
         )
-        currency = (Currency.objects.all(
-            )[:settings.REST_FRAMEWORK.get('PAGE_SIZE')]
-        )
-
+        currency = (Currency.objects
+                    .all()[:settings.REST_FRAMEWORK.get('PAGE_SIZE')])
         context = {
             'title': 'Курсы валют',
             'header': 'Курсы валют',

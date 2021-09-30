@@ -1,40 +1,21 @@
 import datetime
-import random
-import xml.etree.ElementTree as ET
 
-import requests
-from currency.models import Currency, CurrencyRate
-from django.conf import settings
+from currency.models import CurrencyRate
 from django.contrib.auth import get_user_model
-from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
-from django.core.paginator import Paginator
-from django.db.models import Avg
-from django.shortcuts import get_object_or_404, get_list_or_404, redirect, render
-from django.urls import reverse
-from rest_framework import filters, mixins, status, viewsets
-from rest_framework.decorators import action, api_view
-from rest_framework.filters import OrderingFilter, SearchFilter
-from rest_framework.generics import get_object_or_404
-from rest_framework.pagination import PageNumberPagination
-from rest_framework.permissions import (IsAuthenticated,
-                                        IsAuthenticatedOrReadOnly)
-from rest_framework.response import Response
-from rest_framework.routers import DefaultRouter
-from rest_framework.viewsets import GenericViewSet
-from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework_simplejwt.views import TokenRefreshView
+from django.shortcuts import get_list_or_404
+from rest_framework import viewsets
 
 # from api.pagination import CustomPagination
+from api.serializers import CurrencyRateSerializer
 from api.permissions import IsAdminOrReadOnly
-from api.serializers import CurrencyRateSerializer, CurrencySerializer
 
 User = get_user_model()
 
 
 class CurrencyAPI(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticatedOrReadOnly, ]
+    permission_classes = [IsAdminOrReadOnly, ]
     serializer_class = CurrencyRateSerializer
+
     def get_queryset(self):
         cur_day_str = str(self.kwargs.get("cur_day"))
         cur_day_dt = datetime.datetime.strptime(
@@ -43,9 +24,6 @@ class CurrencyAPI(viewsets.ModelViewSet):
             CurrencyRate,
             date=cur_day_dt)
         return queryset
-
-
-
 
 # class MixinViewSet(mixins.CreateModelMixin, mixins.DestroyModelMixin,
 #                    mixins.ListModelMixin, GenericViewSet):
@@ -113,7 +91,8 @@ class CurrencyAPI(viewsets.ModelViewSet):
 #     send_mail(
 #         'Подтверждение адреса электронной почты YaTube',
 #         'Вы получили это письмо, потому что регистрируетесь на ресурсе '
-#         'YaTube Код подтверждения confirmation_code=' + str(confirmation_code),
+#         'YaTube Код подтверждения confirmation_code='
+#          + str(confirmation_code),
 #         settings.DEFAULT_FROM_EMAIL,
 #         [email, ],
 #         fail_silently=False,)

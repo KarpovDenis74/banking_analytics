@@ -13,7 +13,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-import debug_toolbar
 from banks import views
 from banks.views import BanksView
 from django.conf import settings
@@ -21,10 +20,9 @@ from django.conf.urls import handler404, handler500
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path, re_path
-
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
 
 handler404 = "banks.views.page_not_found"   # noqa
 handler500 = "banks.views.server_error"     # noqa
@@ -56,12 +54,14 @@ urlpatterns = [
 
 urlpatterns += [
     re_path(r'^swagger(?P<format>\.json|\.yaml)$',
-        schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    path('swagger', schema_view.with_ui('swagger',
-                                           cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc',
-                                         cache_timeout=0), name='schema-redoc'),
-
+            schema_view.without_ui(cache_timeout=0),
+            name='schema-json'),
+    path('swagger',
+         schema_view.with_ui('swagger', cache_timeout=0),
+         name='schema-swagger-ui'),
+    path('redoc/',
+         schema_view.with_ui('redoc', cache_timeout=0),
+         name='schema-redoc'),
 ]
 
 if settings.DEBUG:

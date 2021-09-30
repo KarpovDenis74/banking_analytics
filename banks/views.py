@@ -1,15 +1,8 @@
 import datetime
-import xml.etree.ElementTree as ET
 
-import requests
 from currency.models import CurrencyRate
-from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse
+from django.shortcuts import render
 from django.views.generic.base import TemplateView
-
-from banks.models import Bank
 
 
 class BanksView:
@@ -46,6 +39,7 @@ def page_not_found(request, exception):
         {"path": request.path},
         status=404
     )
+
 
 def server_error(request):
     return render(request, "misc/500.html", status=500)

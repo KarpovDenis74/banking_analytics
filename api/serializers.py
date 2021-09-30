@@ -1,7 +1,6 @@
 from currency.models import Currency, CurrencyRate
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from rest_framework.validators import UniqueValidator
 
 User = get_user_model()
 
@@ -14,6 +13,7 @@ class CurrencySerializer(serializers.ModelSerializer):
 
 class CurrencyRateSerializer(serializers.ModelSerializer):
     currency = CurrencySerializer(read_only=True)
+
     class Meta:
         fields = ('date', 'currency', 'value', 'nominal',)
         model = CurrencyRate
@@ -66,8 +66,10 @@ class CurrencyRateSerializer(serializers.ModelSerializer):
 
 
 # class TitleReadSerializer(serializers.ModelSerializer):
-#     rating = serializers.DecimalField(read_only=True, max_digits=10,
-#                                       decimal_places=1, coerce_to_string=False)
+#     rating = serializers.DecimalField(read_only=True,
+#                                       max_digits=10,
+#                                       decimal_places=1,
+#                                       coerce_to_string=False)
 #     category = CategorySerializer(read_only=True)
 #     genre = GenreSerializer(many=True)
 
@@ -78,7 +80,8 @@ class CurrencyRateSerializer(serializers.ModelSerializer):
 
 # class TitleWriteSerializer(serializers.ModelSerializer):
 #     rating = serializers.DecimalField(read_only=True, max_digits=10,
-#                                       decimal_places=1, coerce_to_string=False)
+#                                       decimal_places=1,
+#                                       coerce_to_string=False)
 
 #     category = serializers.SlugRelatedField(
 #         queryset=Category.objects.all(),

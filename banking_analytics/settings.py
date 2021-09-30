@@ -22,12 +22,12 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_filters',
     'corsheaders',
+]
 
-    ]
 USER_APPS = [
     'api',
     'currency',
-    'banks',    
+    'banks',
 ]
 
 MIDDLEWARE = [
