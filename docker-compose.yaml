@@ -11,7 +11,7 @@ services:
       - ./.env
 
   web:
-    image: fotokarpov/foodgram:v1.0
+    image: fotokarpov/analitik:v1.0
     restart: always
     volumes:
       - static:/code/static/
