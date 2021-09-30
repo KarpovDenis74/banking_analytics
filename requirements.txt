@@ -38,3 +38,5 @@ toml==0.10.2
 uritemplate==3.0.1
 urllib3==1.26.6
 psycopg2-binary==2.9.1
+flake8==3.9.2
+gunicorn==20.1.0
