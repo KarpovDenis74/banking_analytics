@@ -19,8 +19,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'drf_yasg',
     'django_filters',
     'corsheaders',
+
     ]
 USER_APPS = [
     'api',
@@ -48,7 +50,6 @@ if DEBUG:
     ]
 else:
     INSTALLED_APPS += USER_APPS
-
 
 ROOT_URLCONF = 'banking_analytics.urls'
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
