@@ -13,17 +13,17 @@
       <div class="collapse navbar-collapse" id="navbarsExample04">
         <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown active">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-expanded="false">Валюта</a>
+            <a class="nav-link dropdown-toggle" href="" id="dropdown04" data-toggle="dropdown" aria-expanded="false">Валюта</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown04">
               <li><a class="dropdown-item" href="{% url 'currency:index' %}">Курсы</a></li>
               <li><a class="dropdown-item" href="{% url 'currency:get_currency_for_day' %}">Запросить курсы в ЦБ</a></li>
               <li><a class="dropdown-item" href="{% url 'currency:example' %}">пример страницы bootstrap </a></li>
             </ul>
           <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="#">Главная</a>
+            <a class="nav-link" aria-current="page" href="{% url 'index' %}">Главная</a>
           </li> 
           <li class="nav-item">
-            <a class="nav-link" href="#">Банки</a>
+            <a class="nav-link disabled" href="#">Банки</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Аналитика</a>
@@ -37,4 +37,9 @@
     </div>
   </div>
 </nav>
+
+
+
+
+
 </header>

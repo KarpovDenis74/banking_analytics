@@ -5,19 +5,27 @@
 {% block css %}<link rel="stylesheet" href='{% static "pages/index.css" %}'>{% endblock %}
 {% block content %}
 <div class="container">
-  <h1 class="custom-button-block custom-button-block col-12 ml-4 mt-3">{{ title }}</h1>
+  <h1 class="custom-button-block custom-button-block row align-items-center mt-3">{{ title }}</h1>
   <div class="row align-items-center">
-    <h4 class="text-right justify-content-end col-3 col-xs-5 col-sm-2 col-md-3 col-lg-2 col-xl-2 col-xxl-1 mt-3">Дата</h4>
-    <input id="cur__date" class="form-control form-control-lg text-left custom-button-block col-4 col-xs-5 col-sm-3 col-md-3 col-lg-2 col-xl-2 col-xxl-1 mt-3" type="date" name="calendar" value="{{ date_rate_str }}">
+    <div class="col-sm-2 mt-3">
+      <h4 class="">Дата</h4>
+    </div>
+    <div class="col-md-3 col-lg-2 mt-3">
+      <input id="cur__date" class="form-control form-control-lg  custom-button-block" type="date" name="calendar" value="{{ date_rate_str }}">
+    </div>
   </div>  
   <div class="row align-items-center">
-    <h4 class="text-right justify-content-end col-3 col-xs-5 col-sm-2 col-md-3 col-lg-2 col-xl-2 col-xxl-1 mt-3">Валюта</h4>
-    <select id="cur__select" class="form-select form-select-lg custom-button-block text-left col-8 col-xs-5 col-sm-3 col-md-3 col-lg-2 col-xl-2 col-xxl-1 mt-3" aria-label="Выбор валюты">
-      <option selected>Выберите валюту</option>
-      {% for cur in currency %}
-      <option value="{{ cur.pk }}">{{ cur.char_code }} - {{cur.name }}</option>
-      {% endfor %}
-    </select>
+    <div class="col-sm-2 mt-3">
+      <h4 class="text-right justify-content-end col-md-3 col-lg-2 col-xl-2 col-xxl-1 mt-3">Валюта</h4>
+    </div>
+    <div class="col-md-6 col-lg-5 col-xxl-4 mt-3">
+      <select id="cur__select" class="form-select form-select-lg custom-button-block text-left" aria-label="Выбор валюты">
+        <option selected>Выберите валюту</option>
+        {% for cur in currency %}
+        <option value="{{ cur.pk }}">{{ cur.char_code }} - {{cur.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
   </div>
 {% csrf_token %}
   <table class="table mt-5">
