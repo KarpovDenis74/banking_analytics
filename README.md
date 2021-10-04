@@ -1,4 +1,4 @@
-# [***«Проект «Финансовая аналитика»»***](http://github.com/KarpovDenis74/banking_analytics)
+# [***«Проект «Финансовая аналитика»***](http://github.com/KarpovDenis74/banking_analytics)
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
@@ -40,7 +40,7 @@
     ```
         docker-compose -f docker-compose.yaml exec web python manage.py createsuperuser
     ```
-6 Добавьте  в базу ghbмеры банков и курсы валют (данные будут взяты из папки data_csv):  
+6 Добавьте  в базу примеры банков и курсы валют (данные будут взяты из папки data_csv):  
     ```
         docker-compose -f docker-compose.yaml exec web python manage.py load_banks
         docker-compose -f docker-compose.yaml exec web python manage.py load_currency

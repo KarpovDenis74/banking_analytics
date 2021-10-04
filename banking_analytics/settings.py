@@ -48,8 +48,25 @@ if DEBUG:
     INTERNAL_IPS = [
         '127.0.0.1',
     ]
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 else:
     INSTALLED_APPS += USER_APPS
+    DATABASES = {
+        'default': {
+            'ENGINE': os.environ.get('DB_ENGINE'),
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('POSTGRES_USER'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT'),
+        }
+    }
+
 
 ROOT_URLCONF = 'banking_analytics.urls'
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
@@ -71,12 +88,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'banking_analytics.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
