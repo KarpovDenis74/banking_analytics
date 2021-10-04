@@ -67,7 +67,6 @@ else:
         }
     }
 
-
 ROOT_URLCONF = 'banking_analytics.urls'
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 TEMPLATES = [
