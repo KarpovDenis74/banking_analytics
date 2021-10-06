@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from apps.users.models import CommunicationNetwork, User, UserCommunicationNetwork
+from apps.users.models import (CommunicationNetwork, User,
+                               UserCommunicationNetwork)
 
 
 class MembershipInline(admin.TabularInline):
