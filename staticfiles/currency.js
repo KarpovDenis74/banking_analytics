@@ -4,7 +4,8 @@ const currencySelect = document.querySelector('#cur__select');
 const api = new Api(apiUrl);
 
 const cbEventInput = (elem) => {
-    return api.getCurrencyList(elem.target.value).then(e => {
+    console.log(currencySelect.value)
+    return api.getCurrencyList(date = rateDate.value, num_code = currencySelect.value).then(e => {
         if (e.results.length !== 0) {
             let temp = ' ';
             for (let i = 1; i <= e.results.length; i++) {
@@ -32,22 +33,40 @@ const cbEventInput = (elem) => {
 };
 
 const eventCurrencyInput = (elem) => {
-    console.log(rateDate);
-    console.log(rateDate.value);
-    console.log(currencySelect);
-    console.log(currencySelect.value);
-    console.log(elem.target.value);
-    return api.getCurrency(rateDate.value, elem.target.value);
+    return api.getCurrency(elem.target.value).then(e => {
+        if (e.results.length !== 0) {
+            let temp = ' ';
+            for (let i = 1; i <= e.results.length; i++) {
+                temp = temp + `<tr>
+                    <th scope="row">${i}</th>
+                    <td>${e.results[i - 1].currency.num_code}</td>
+                    <td>${e.results[i - 1].currency.char_code}</td>
+                    <td>${e.results[i - 1].nominal}</td>
+                    <td>${e.results[i - 1].currency.name}</td>
+                    <td>${e.results[i - 1].value} RUR</td>
+                </tr>`;
+            }
+            currencyCard.innerHTML = temp;
+        }
+    })
+        .catch(e => {
+            currencyCard.innerHTML = `<tr>
+                            <th scope="row">-</th>
+                            <td>Нет данных по заданным параментрам</td>
+                            <td></td>
+                            <td></td>
+                        </tr>`;
+            console.log(e);
+        })
 };
+
+
 const eventCurInput = debouncing(eventCurrencyInput, 1000);
-// вешаем апи
-currencySelect.addEventListener('change', eventCurInput);
-
-
 const eventInput = debouncing(cbEventInput, 1000);
 // вешаем апи
 rateDate.addEventListener('input', eventInput);
-
+// вешаем апи
+currencySelect.addEventListener('change', eventInput);
 
 // const counterId = document.querySelector('#counter');
 

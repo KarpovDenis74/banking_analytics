@@ -3,6 +3,7 @@ import datetime as dt
 from currency.models import CurrencyRate
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_list_or_404
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 
 from api.permissions import IsAdminOrReadOnly
@@ -13,20 +14,23 @@ User = get_user_model()
 
 
 class CurrencyAPI(viewsets.ReadOnlyModelViewSet):
+    queryset = CurrencyRate.objects.all()
     permission_classes = [IsAdminOrReadOnly, ]
     serializer_class = CurrencyRateSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filterset_fields = ('date', 'currency__num_code')
 
-    def get_queryset(self):
-        cur_day_str = str(self.kwargs.get("cur_day"))
-        try:
-            cur_day_dt = dt.datetime.strptime(
-                cur_day_str, "%Y-%m-%d")  # Date="20210831" -> datetime
-        except Exception:
-            return None
-        queryset = get_list_or_404(
-            CurrencyRate,
-            date=cur_day_dt)
-        return queryset
+    # def get_queryset(self):
+    #     cur_day_str = str(self.kwargs.get("cur_day"))
+    #     try:
+    #         cur_day_dt = dt.datetime.strptime(
+    #             cur_day_str, "%Y-%m-%d")  # Date="20210831" -> datetime
+    #     except Exception:
+    #         return None
+    #     queryset = get_list_or_404(
+    #         CurrencyRate,
+    #         date=cur_day_dt)
+    #     return queryset
 
 # class MixinViewSet(mixins.CreateModelMixin, mixins.DestroyModelMixin,
 #                    mixins.ListModelMixin, GenericViewSet):

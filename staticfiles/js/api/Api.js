@@ -3,8 +3,17 @@ class Api {
     constructor(apiUrl) {
         this.apiUrl =  apiUrl;
     }
-  getCurrencyList(date) {
-    return fetch(`${this.apiUrl}currency/${date}/`, {
+  getCurrencyList(date = null, num_code = null) {
+    var tmp = "?"
+    if (date !== null) {
+      tmp += `date=${date}&`
+    }
+    if (num_code == null || String(num_code).length >= 4) {
+      tmp += ` `
+    } else if (num_code !== null) {
+      tmp += `currency__num_code=${num_code}`
+    }
+    return fetch(`${this.apiUrl}currency/${tmp}`, {
       headers: {
         'X-CSRFToken': document.getElementsByName('csrfmiddlewaretoken')[0].value,
         'Content-Type': 'application/json'
@@ -18,20 +27,6 @@ class Api {
       })
   }
 
-  getCurrency(date, id) {
-    return fetch(`${this.apiUrl}currency/${date}/${id}/`, {
-      headers: {
-        'X-CSRFToken': document.getElementsByName('csrfmiddlewaretoken')[0].value,
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(e => {
-        if (e.ok) {
-          return e.json()
-        }
-        return Promise.reject(e.statusText)
-      })
-  }
   // getPurchases () {
   //   return fetch(`${this.apiUrl}purchases/${id}/`, {
   //     headers: {

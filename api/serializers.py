@@ -15,7 +15,7 @@ class CurrencyRateSerializer(serializers.ModelSerializer):
     currency = CurrencySerializer(read_only=True)
 
     class Meta:
-        fields = ('date', 'currency', 'value', 'nominal',)
+        fields = ('pk', 'date', 'currency', 'value', 'nominal',)
         model = CurrencyRate
 
 

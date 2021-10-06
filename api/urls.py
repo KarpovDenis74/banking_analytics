@@ -8,7 +8,7 @@ router = DefaultRouter()
 # дата в формате  31-09-2021
 # пример запроса:
 # /api/v1/currency/17-09-2021/
-router.register(r'currency/(?P<cur_day>\d+[-]\d+[-]\d+)',
+router.register(r'currency',
                 CurrencyAPI,
                 basename='currency')
 

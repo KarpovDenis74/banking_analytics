@@ -22,7 +22,7 @@
       <select id="cur__select" class="form-select form-select-lg custom-button-block text-left" aria-label="Выбор валюты">
         <option selected>Выберите валюту</option>
         {% for cur in currency %}
-        <option value="{{ cur.pk }}">{{ cur.char_code }} - {{cur.name }}</option>
+        <option value="{{ cur.num_code }}">{{ cur.char_code }} - {{cur.name }}</option>
         {% endfor %}
       </select>
     </div>
