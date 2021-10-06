@@ -3,7 +3,7 @@ class Api {
     constructor(apiUrl) {
         this.apiUrl =  apiUrl;
     }
-  getCurrency(id) {
+  getCurrencyList(id) {
     return fetch(`${this.apiUrl}currency/${id}/`, {
       headers: {
         'X-CSRFToken': document.getElementsByName('csrfmiddlewaretoken')[0].value,

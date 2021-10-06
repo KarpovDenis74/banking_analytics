@@ -1,25 +1,28 @@
-import datetime
+import datetime as dt
 
 from currency.models import CurrencyRate
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_list_or_404
 from rest_framework import viewsets
 
+from api.permissions import IsAdminOrReadOnly
 # from api.pagination import CustomPagination
 from api.serializers import CurrencyRateSerializer
-from api.permissions import IsAdminOrReadOnly
 
 User = get_user_model()
 
 
-class CurrencyAPI(viewsets.ModelViewSet):
+class CurrencyAPI(viewsets.ReadOnlyModelViewSet):
     permission_classes = [IsAdminOrReadOnly, ]
     serializer_class = CurrencyRateSerializer
 
     def get_queryset(self):
         cur_day_str = str(self.kwargs.get("cur_day"))
-        cur_day_dt = datetime.datetime.strptime(
-            cur_day_str, "%Y-%m-%d")  # Date="31082021" -> datetime
+        try:
+            cur_day_dt = dt.datetime.strptime(
+                cur_day_str, "%Y-%m-%d")  # Date="20210831" -> datetime
+        except Exception:
+            return None
         queryset = get_list_or_404(
             CurrencyRate,
             date=cur_day_dt)

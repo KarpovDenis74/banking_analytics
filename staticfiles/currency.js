@@ -4,7 +4,7 @@ const currencySelect = document.querySelector('#cur__select');
 const api = new Api(apiUrl);
 
 const cbEventInput = (elem) => {
-    return api.getCurrency(elem.target.value).then(e => {
+    return api.getCurrencyList(elem.target.value).then(e => {
         if (e.results.length !== 0) {
             let temp = ' ';
             for (let i = 1; i <= e.results.length; i++) {
@@ -30,6 +30,18 @@ const cbEventInput = (elem) => {
             console.log(e);
         })
 };
+
+const eventCurrencyInput = (elem) => {
+    console.log(rateDate);
+    console.log(rateDate.value);
+    console.log(currencySelect);
+    console.log(currencySelect.value);
+    console.log(elem.target.value);
+    return api.getCurrency(rateDate.value, elem.target.value);
+};
+const eventCurInput = debouncing(eventCurrencyInput, 1000);
+// вешаем апи
+currencySelect.addEventListener('change', eventCurInput);
 
 
 const eventInput = debouncing(cbEventInput, 1000);

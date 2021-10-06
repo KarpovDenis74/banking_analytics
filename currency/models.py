@@ -10,15 +10,19 @@ class Currency(models.Model):
     num_code = models.PositiveSmallIntegerField(
         verbose_name='Цировой код валюты',
         unique=True,
+        blank=False,
+        help_text='Дайте валюте цировой код'
     )
     char_code = models.CharField(
-        verbose_name='Буквенный код валюты',
+        verbose_name='Символьный код валюты',
         max_length=10,
         unique=True,
+        blank=False,
     )
     name = models.CharField(
         verbose_name='Наименование валюты',
         max_length=256,
+        blank=False,
     )
 
     class Meta:
@@ -34,6 +38,7 @@ class CurrencyRate(models.Model):
     date = models.DateField(
         verbose_name='Курс валюты на дату',
         blank=False,
+        help_text='Дата установки курса',
     )
     currency = models.ForeignKey(
         Currency,
@@ -56,3 +61,6 @@ class CurrencyRate(models.Model):
         verbose_name = 'Курс валюты'
         verbose_name_plural = 'Курсы валют'
         ordering = ['-date']
+
+    def __str__(self):
+        return f'{self.value}'

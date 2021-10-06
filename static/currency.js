@@ -4,14 +4,14 @@ const currencySelect = document.querySelector('#cur__select');
 const api = new Api(apiUrl);
 
 const cbEventInput = (elem) => {
-    return api.getCurrency(elem.target.value).then(e => {
+    return api.getCurrencyList(elem.target.value).then(e => {
         if (e.results.length !== 0) {
             let temp = ' ';
             for (let i = 1; i <= e.results.length; i++) {
                 temp = temp + `<tr>
                     <th scope="row">${i}</th>
-                    <td>${e.results[i - 1].currency.num_code}</td>
-                    <td>${e.results[i - 1].currency.char_code}</td>
+                    <td>${e.results[i-1].currency.num_code}</td>
+                    <td>${e.results[i-1].currency.char_code}</td>
                     <td>${e.results[i-1].nominal}</td>
                     <td>${e.results[i-1].currency.name}</td>
                     <td>${e.results[i-1].value} RUR</td>

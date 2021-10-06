@@ -60,11 +60,7 @@ class CurrencyMode:
                 value=value,
                 nominal=nominal
             )
-        currency = CurrencyRate.objects.filter(date=date_rate)
-        context = {
-            'currency': currency,
-            'date_rate_str': date_rate_str,
-        }
+        context = {}
         return render(request, 'currency/get_currency_for_day.html', context)
 
 

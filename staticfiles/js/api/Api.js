@@ -3,8 +3,8 @@ class Api {
     constructor(apiUrl) {
         this.apiUrl =  apiUrl;
     }
-  getCurrency(id) {
-    return fetch(`${this.apiUrl}currency/${id}/`, {
+  getCurrencyList(date) {
+    return fetch(`${this.apiUrl}currency/${date}/`, {
       headers: {
         'X-CSRFToken': document.getElementsByName('csrfmiddlewaretoken')[0].value,
         'Content-Type': 'application/json'
@@ -18,6 +18,20 @@ class Api {
       })
   }
 
+  getCurrency(date, id) {
+    return fetch(`${this.apiUrl}currency/${date}/${id}/`, {
+      headers: {
+        'X-CSRFToken': document.getElementsByName('csrfmiddlewaretoken')[0].value,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(e => {
+        if (e.ok) {
+          return e.json()
+        }
+        return Promise.reject(e.statusText)
+      })
+  }
   // getPurchases () {
   //   return fetch(`${this.apiUrl}purchases/${id}/`, {
   //     headers: {
