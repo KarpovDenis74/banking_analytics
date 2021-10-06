@@ -3,8 +3,17 @@ class Api {
     constructor(apiUrl) {
         this.apiUrl =  apiUrl;
     }
-  getCurrencyList(id) {
-    return fetch(`${this.apiUrl}currency/${id}/`, {
+  getCurrencyList(date = null, num_code = null) {
+    var tmp = "?"
+    if (date !== null) {
+      tmp += `date=${date}&`
+    }
+    if (num_code == null || String(num_code).length >= 4) {
+      tmp += ` `
+    } else if (num_code !== null) {
+      tmp += `currency__num_code=${num_code}`
+    }
+    return fetch(`${this.apiUrl}currency/${tmp}`, {
       headers: {
         'X-CSRFToken': document.getElementsByName('csrfmiddlewaretoken')[0].value,
         'Content-Type': 'application/json'

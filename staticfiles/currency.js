@@ -4,9 +4,15 @@ const currencySelect = document.querySelector('#cur__select');
 const api = new Api(apiUrl);
 
 const cbEventInput = (elem) => {
-    console.log(currencySelect.value)
     return api.getCurrencyList(date = rateDate.value, num_code = currencySelect.value).then(e => {
+        non_data = `<tr>
+                        <th scope="row">-</th>
+                        <td>Нет данных по заданным параментрам</td>
+                        <td></td>
+                        <td></td>
+                    </tr>`;
         if (e.results.length !== 0) {
+            console.log(`e.results.length = ${e.results.length}`);
             let temp = ' ';
             for (let i = 1; i <= e.results.length; i++) {
                 temp = temp + `<tr>
@@ -19,49 +25,17 @@ const cbEventInput = (elem) => {
                 </tr>`;
             }
             currencyCard.innerHTML = temp;
+        } else {
+            currencyCard.innerHTML = non_data;
+            console.log(e);
         }
     })
         .catch(e => {
-            currencyCard.innerHTML = `<tr>
-                            <th scope="row">-</th>
-                            <td>Нет данных по заданным параментрам</td>
-                            <td></td>
-                            <td></td>
-                        </tr>`;
+            currencyCard.innerHTML = non_data;
             console.log(e);
         })
 };
 
-const eventCurrencyInput = (elem) => {
-    return api.getCurrency(elem.target.value).then(e => {
-        if (e.results.length !== 0) {
-            let temp = ' ';
-            for (let i = 1; i <= e.results.length; i++) {
-                temp = temp + `<tr>
-                    <th scope="row">${i}</th>
-                    <td>${e.results[i - 1].currency.num_code}</td>
-                    <td>${e.results[i - 1].currency.char_code}</td>
-                    <td>${e.results[i - 1].nominal}</td>
-                    <td>${e.results[i - 1].currency.name}</td>
-                    <td>${e.results[i - 1].value} RUR</td>
-                </tr>`;
-            }
-            currencyCard.innerHTML = temp;
-        }
-    })
-        .catch(e => {
-            currencyCard.innerHTML = `<tr>
-                            <th scope="row">-</th>
-                            <td>Нет данных по заданным параментрам</td>
-                            <td></td>
-                            <td></td>
-                        </tr>`;
-            console.log(e);
-        })
-};
-
-
-const eventCurInput = debouncing(eventCurrencyInput, 1000);
 const eventInput = debouncing(cbEventInput, 1000);
 // вешаем апи
 rateDate.addEventListener('input', eventInput);

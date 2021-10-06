@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Редактирование{% endblock %}
+{% block content %}
+{% load user_filters %}
+
+<main class="main container">
+    <div class="main__header">
+        <h1 class="main__title">Редактирование профиля пользователя {{ user.username }}</h1>
+    </div>
+    <div class="form-container">
+        <form class="form" method="post" action="{% url 'users_admin_edit' user.id %}">
+            {% csrf_token %}
+            {% if form.errors %}<span class="form__error">Пожалуста заполните корретно поля формы:</span> <br>{% endif %}  
+            {% for error in form.errors %}
+                <span class="form__error">{{ error }}</span>
+            {% endfor %}
+            <br>
+            {% for field in form %}
+            <div class="form__group">
+                <label for="id_first_name" class="form__label">{{ field.label }}{% if field.field.required %}<span
+                                class="required">*</span>{% endif %}
+                </label>
+                <div class="form__field-group">
+                    {{ field|addclass:"form__input" }}
+                    {% if form.field.errors %}<span class="form__error">{{ form.field.errors }}</span>{% endif %}      
+                </div>
+            </div>
+            {% endfor %}
+            <div class="form__footer">
+                <button type="submit" class="button button_style_blue">Сохранить изменения</button>
+            </div>
+        </form>
+    </div>
+
+
+</main>
+{% endblock %}

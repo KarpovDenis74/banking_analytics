@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Зарегистрироваться{% endblock %}
+{% block content %}
+{% load user_filters %}
+
+<div class="main container">
+    <div class="main__header">
+        <h1 class="main__title">Работа с пользователями системы</h1>
+    </div>
+        <p class="nav__item nav__item_disabled">
+            <span class="form__field-group">Имя пользователя</span>
+            <span class="form__field-group">Почта</span>
+        </p>
+        {% for item in count %}
+        <p class="nav__item nav__item_disabled">
+            <span class="form__field-group  ">
+                {{ item.username }}
+            </span>
+            <span class="form__field-group  ">
+                {{ item.email }}
+            </span>
+            <button type="submit" class="button button_style_blue">
+                <a href="{% url 'users_admin_edit' item.id %}" class="nav__link link">
+                    Редактировать
+                </a> 
+            </button>
+            <button type="submit" class="button button_style_blue">
+                <a href="{% url 'users_admin_delete' item.id %}" class="nav__link link">
+                    Удалить
+                </a> 
+            </button>
+        </p>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

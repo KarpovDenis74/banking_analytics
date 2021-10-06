@@ -41,6 +41,8 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    path('auth/', include('apps.users.urls')),
+    path('auth/', include('django.contrib.auth.urls')),
     path('about/', views.AuthorPage.as_view(), name='about'),
     path('teсhnologies/', views.TeсhnologiesPage.as_view(),
          name='teсhnologies'),
