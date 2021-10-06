@@ -58,7 +58,7 @@ jobs:
         script: |
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/analitik:v1.0
           sudo docker-compose down
-          docker volume rm ${{ secrets.DOCKER_USERNAME }}_static
+          docker volume rm ${{ secrets.USER }}_static
           sudo docker-compose up -d --force-recreate
   send_message:
     runs-on: ubuntu-latest
