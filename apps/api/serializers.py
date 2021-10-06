@@ -1,4 +1,4 @@
-from currency.models import Currency, CurrencyRate
+from apps.currency.models import Currency, CurrencyRate
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 

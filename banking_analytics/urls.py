@@ -13,8 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from banks import views
-from currency.views import CurrencyView
+from apps.banks import views
+from apps.currency.views import CurrencyView
 from django.conf import settings
 from django.conf.urls import handler404, handler500
 from django.conf.urls.static import static
@@ -24,8 +24,8 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 
-handler404 = "banks.views.page_not_found"   # noqa
-handler500 = "banks.views.server_error"     # noqa
+handler404 = "apps.banks.views.page_not_found"   # noqa
+handler500 = "apps.banks.views.server_error"     # noqa
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -43,13 +43,14 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('auth/', include('apps.users.urls')),
     path('auth/', include('django.contrib.auth.urls')),
+    path('admin/', admin.site.urls),
+    path('captcha/', include('captcha.urls')),
     path('about/', views.AuthorPage.as_view(), name='about'),
     path('teсhnologies/', views.TeсhnologiesPage.as_view(),
          name='teсhnologies'),
-    path('admin/', admin.site.urls),
-    path('banks/', include('banks.urls', namespace='banks')),
-    path('currency/', include('currency.urls', namespace='currency')),
-    path('api/', include('api.urls')),
+    path('banks/', include('apps.banks.urls', namespace='banks')),
+    path('currency/', include('apps.currency.urls', namespace='currency')),
+    path('api/', include('apps.api.urls')),
     path('', CurrencyView.index, name='index'),
 ]
 
@@ -75,9 +76,3 @@ if settings.DEBUG:
                           document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL,
                           document_root=settings.STATIC_ROOT)
-
-# if settings.DEBUG:
-#     import debug_toolbar
-#     urlpatterns = [
-#         path('__debug__/', include(debug_toolbar.urls)),
-#     ] + urlpatterns

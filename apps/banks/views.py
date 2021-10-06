@@ -1,6 +1,6 @@
 import datetime
 
-from currency.models import CurrencyRate
+from apps.currency.models import CurrencyRate
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 
@@ -15,7 +15,7 @@ class BanksView:
 
 
 class AuthorPage(TemplateView):
-    template_name = 'banks/about.html'
+    template_name = 'apps/banks/about.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -24,7 +24,7 @@ class AuthorPage(TemplateView):
 
 
 class TeсhnologiesPage(TemplateView):
-    template_name = 'banks/teсhnologies.html'
+    template_name = 'apps/banks/teсhnologies.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -6,13 +6,13 @@ from django.conf import settings
 # from django.core.paginator import Paginator
 from django.shortcuts import render
 
-from currency.models import Currency, CurrencyRate
+from apps.currency.models import Currency, CurrencyRate
 
 
 class CurrencyMode:
     url_currency = 'http://www.cbr.ru/scripts/XML_daily.asp'
     dirs = {
-        'currency': 'currency/cbr_data/currency',
+        'currency': 'apps/currency/cbr_data/currency',
     }
 
     def __get_file_currency() -> str:
@@ -66,6 +66,7 @@ class CurrencyMode:
 
 class CurrencyView:
     def index(request):
+        rate_date = datetime.date.today().strftime("%Y-%m-%d")
         currency_rate = (CurrencyRate.objects.filter(
             date=datetime.date.today())
             .select_related('currency')
@@ -73,6 +74,7 @@ class CurrencyView:
         currency = (Currency.objects
                     .all()[:settings.REST_FRAMEWORK.get('PAGE_SIZE')])
         context = {
+            'rate_date': rate_date,
             'title': 'Курсы валют',
             'header': 'Курсы валют',
             'currency': currency,
@@ -81,4 +83,4 @@ class CurrencyView:
         return render(request, 'currency/currency.html', context)
 
     def example(request):
-        return render(request, 'currency/_example.html')
+        return render(request, 'apps/currency/_example.html')

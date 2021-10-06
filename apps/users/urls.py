@@ -6,7 +6,6 @@ from apps.users import views
 
 User = get_user_model()
 
-
 urlpatterns = [
     path('signup/', views.SignUp.as_view(), name='signup'),
     path('captcha/', include('captcha.urls')),

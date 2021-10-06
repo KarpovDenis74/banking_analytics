@@ -1,6 +1,6 @@
 from django.urls import path
 
-from currency.views import CurrencyMode, CurrencyView
+from apps.currency.views import CurrencyMode, CurrencyView
 
 app_name = 'currency'
 

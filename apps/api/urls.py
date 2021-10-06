@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from api.views import CurrencyAPI
+from apps.api.views import CurrencyAPI
 
 router = DefaultRouter()
 # возвращает курсы валют за определенную дату

@@ -1,11 +1,11 @@
-from currency.models import CurrencyRate
+from apps.currency.models import CurrencyRate
 from django.contrib.auth import get_user_model
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 
-from api.permissions import IsAdminOrReadOnly
+from apps.api.permissions import IsAdminOrReadOnly
 # from api.pagination import CustomPagination
-from api.serializers import CurrencyRateSerializer
+from apps.api.serializers import CurrencyRateSerializer
 
 User = get_user_model()
 

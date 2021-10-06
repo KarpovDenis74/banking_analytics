@@ -11,6 +11,7 @@ DEBUG = strtobool(os.getenv('DJANGO_DEBUG', 'False'))
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = ['*']
+SITE_ID = 1
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -25,9 +26,9 @@ INSTALLED_APPS = [
     'captcha',
 ]
 USER_APPS = [
-    'api',
-    'currency',
-    'banks',
+    'apps.api',
+    'apps.currency',
+    'apps.banks',
     'apps.users',
 ]
 
@@ -139,7 +140,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'staticfiles'), )
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_URL = '/auth/login'
+# LOGIN_URL = '/auth/login'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
 AUTH_USER_MODEL = 'users.User'
