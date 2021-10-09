@@ -2,7 +2,7 @@ import datetime
 
 from django.contrib.auth import get_user_model
 from django_filters import BaseInFilter, FilterSet, NumberFilter
-from django_filters.rest_framework import DjangoFilterBackend
+# from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 
 from apps.api.permissions import IsAdminOrReadOnly
@@ -23,7 +23,6 @@ class ProductFilter(FilterSet):
         field_name='currency', lookup_expr='in')
 
 
-
 class CurrencyAPI(viewsets.ReadOnlyModelViewSet):
     queryset = CurrencyRate.objects.all()
     permission_classes = [IsAdminOrReadOnly, ]
@@ -35,7 +34,7 @@ class CurrencyAPI(viewsets.ReadOnlyModelViewSet):
         queryset = CurrencyRate.objects.all()
         date = self.request.query_params.get('date')
         date = datetime.datetime.strptime(date, "%Y-%m-%d")
-        currency = self.request.query_params.get('currency')  
+        currency = self.request.query_params.get('currency')
         if currency is not None:
             currency = currency.split(",")
             print(currency)
