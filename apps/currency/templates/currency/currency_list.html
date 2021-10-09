@@ -1,0 +1,9 @@
+<h6 class="">Список валют</h6>
+<div id="cur_list">
+  {% for cur in currency %}
+    <div class="">
+        <input class="checkbox" type="checkbox" value="{{ cur.pk }}" name="check input">
+        {{ cur.name }}
+    </div>
+  {% endfor %}
+</div>

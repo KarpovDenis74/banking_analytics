@@ -4,15 +4,15 @@ class Api {
         this.apiUrl =  apiUrl;
     }
   getCurrencyList(date = null, num_code = null) {
-    var tmp = "?"
+    var tmp = "?";
     if (date !== null) {
       tmp += `date=${date}&`
-    }
-    if (num_code == null || String(num_code).length >= 4) {
-      tmp += ` `
-    } else if (num_code !== null) {
-      tmp += `currency__num_code=${num_code}`
-    }
+    };
+    if (num_code == null || String(num_code).length < 1) {
+      tmp += ` `;
+    } else  {
+      tmp += num_code;
+    };
     return fetch(`${this.apiUrl}currency/${tmp}`, {
       headers: {
         'X-CSRFToken': document.getElementsByName('csrfmiddlewaretoken')[0].value,
@@ -25,7 +25,7 @@ class Api {
         }
         return Promise.reject(e.statusText)
       })
-  }
+  };
 
   // getPurchases () {
   //   return fetch(`${this.apiUrl}purchases/${id}/`, {

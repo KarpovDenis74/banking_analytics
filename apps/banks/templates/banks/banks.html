@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ title }}{% endblock %}
 {% block meta_description %}
-<meta name="description" content="Актуальные курсы валют, динамика, графики, новости. Данные ЦБ." />
+    <meta name="description" content="Анализ банков, показателей кредитных организаций (динамика, графики, новости)" />
 {% endblock %}
 {% load static %}
 {% block css %}
@@ -21,11 +21,11 @@
 </div>
 <div class="row">
   <div class="col-md-3 mt-5">
-    {% include 'currency/currency_list.html' %}
+    {% include 'banks/banks_list_currency.html' %}
   </div>
   <div class="col">
-    {% include 'currency/currency_data.html' %}
-  </div>
+    {% include 'banks/banks_data_currency.html' %}
+  </div>   
 </div>
 {% endblock %}
 
@@ -33,5 +33,5 @@
 <script src="{% static '/js/config/config.js' %}"></script>
 <script src="{% static '/js/utils/debouncing.js' %}"></script>
 <script src="{% static '/js/api/Api.js' %}"></script>
-<script src="{% static 'currency.js' %}"></script>
+<script src="{% static 'banks.js' %}"></script>
 {% endblock %}

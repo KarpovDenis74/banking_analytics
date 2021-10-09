@@ -1,21 +1,49 @@
-from apps.currency.models import CurrencyRate
+import datetime
+
 from django.contrib.auth import get_user_model
+from django_filters import BaseInFilter, FilterSet, NumberFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 
 from apps.api.permissions import IsAdminOrReadOnly
 # from api.pagination import CustomPagination
 from apps.api.serializers import CurrencyRateSerializer
+from apps.currency.models import CurrencyRate
 
 User = get_user_model()
+
+
+class NumberInFilter(BaseInFilter, NumberFilter):
+    pass
+
+
+class ProductFilter(FilterSet):
+    currency = NumberFilter()
+    currency__in = NumberInFilter(
+        field_name='currency', lookup_expr='in')
+
 
 
 class CurrencyAPI(viewsets.ReadOnlyModelViewSet):
     queryset = CurrencyRate.objects.all()
     permission_classes = [IsAdminOrReadOnly, ]
     serializer_class = CurrencyRateSerializer
-    filter_backends = (DjangoFilterBackend,)
-    filterset_fields = ('date', 'currency__num_code')
+    # filter_backends = (ProductFilter,)
+    # filterset_fields = ('date', 'currency')
+
+    def get_queryset(self):
+        queryset = CurrencyRate.objects.all()
+        date = self.request.query_params.get('date')
+        date = datetime.datetime.strptime(date, "%Y-%m-%d")
+        currency = self.request.query_params.get('currency')  
+        if currency is not None:
+            currency = currency.split(",")
+            print(currency)
+            queryset = queryset.filter(date=date, currency__in=currency)
+        else:
+            queryset = queryset.filter(date=date)
+            print(queryset)
+        return queryset
 
     # def get_queryset(self):
     #     cur_day_str = str(self.kwargs.get("cur_day"))
