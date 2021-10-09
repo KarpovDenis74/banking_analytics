@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'captcha',
+    'django.contrib.sites',
 ]
 USER_APPS = [
     'apps.api',
