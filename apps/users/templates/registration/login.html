@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Войти в систему{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href='{% static "pages/form.css" %}'>
+{% endblock %}
 {% block content %}
 {% load user_filters %}
 <main class="main container">
@@ -25,7 +29,7 @@
             </div>
             <div class="form__footer">
                 <button class="button button_style_blue">Войти</button>
-                <a class="form__forgot-link">Забыли пароль?</a>
+                <a href="{% url 'password_reset' %}" class="form__forgot-link">Забыли пароль?</a>
             </div>
         </form>
     </div>

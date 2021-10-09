@@ -3,7 +3,7 @@ import logging
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
+# from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
@@ -32,15 +32,12 @@ class SignUp(CreateView):
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
         self.object = form.save()
-        confirmation_code = PasswordResetTokenGenerator()
+        # confirmation_code = PasswordResetTokenGenerator()
         try:
             send_mail(
-                'Подтверждение пароля',
-                'Вам необходимо подтвердить пароль, '
-                'пройдя по'
-                f' <a href="{settings.SITE_IP_SERVER}/'
-                f'check_email/{confirmation_code}/">'
-                'ссылке для подтверждения e-mail</a>',
+                f'Вы зарегистрировались на сайте {settings.SITE_NAME}',
+                'Поздравляем, Вам открыты ресурся для зарегистрированных'
+                'пользователей. ',
                 settings.EMAIL_HOST_USER,
                 [self.object.email],
                 fail_silently=False,

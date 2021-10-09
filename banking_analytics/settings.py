@@ -56,6 +56,17 @@ if DEBUG:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+    # подключаем модуль отправки писем по e-mail
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.getenv('DEBUG_EMAIL_HOST')
+    EMAIL_PORT = os.getenv('DEBUG_EMAIL_PORT')
+    EMAIL_HOST_USER = os.getenv('DEBUG_EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.getenv('DEBUG_EMAIL_HOST_PASSWORD')
+    # EMAIL_USE_TLS
+    EMAIL_USE_SSL = os.getenv('DEBUG_EMAIL_USE_SSL')
+    # EMAIL_TIMEOUT
+    # EMAIL_SSL_KEYFILE
+    # EMAIL_SSL_CERTFILE
 else:
     INSTALLED_APPS += USER_APPS
     DATABASES = {
@@ -68,6 +79,17 @@ else:
             'PORT': os.environ.get('DB_PORT'),
         }
     }
+    # подключаем модуль отправки писем по e-mail
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.getenv('EMAIL_HOST')
+    EMAIL_PORT = os.getenv('EMAIL_PORT')
+    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+    # EMAIL_USE_TLS
+    EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL')
+    # EMAIL_TIMEOUT
+    # EMAIL_SSL_KEYFILE
+    # EMAIL_SSL_CERTFILE
 
 ROOT_URLCONF = 'banking_analytics.urls'
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
@@ -144,3 +166,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
 AUTH_USER_MODEL = 'users.User'
+
+SITE_NAME = 'analitik.online'
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
