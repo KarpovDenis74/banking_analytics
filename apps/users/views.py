@@ -36,8 +36,8 @@ class SignUp(CreateView):
         try:
             send_mail(
                 f'Вы зарегистрировались на сайте {settings.SITE_NAME}',
-                'Поздравляем, Вам открыты ресурся для зарегистрированных'
-                'пользователей. ',
+                'Поздравляем, Вам открыты ресурсы для зарегистрированных'
+                ' пользователей. ',
                 settings.EMAIL_HOST_USER,
                 [self.object.email],
                 fail_silently=False,
