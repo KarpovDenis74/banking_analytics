@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block meta_description %}
+<meta name="description" content="Список банков Росссии по данным ЦБ РФ. Полный перечень банков" />
+{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href='{% static "pages/index.css" %}'>{% endblock %}
+{% block content %}
+
+{% csrf_token %}
+<h1 class="custom-button-block custom-button-block row align-items-center mt-3">{{ title }}</h1>
+<div class="row align-items-center">
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col-1">#</th>
+                <th scope="col-1">БИК</th>
+                <th scope="col-1">ОГРН</th>
+                <th scope="col-1">Дата регистрации</th>
+                <th scope="col-1">Наименование</th>
+                <th scope="col-1">Рег номер *</th>
+                <th scope="col-1">Рег номер</th>
+                <th scope="col-1">Внутренний номер</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for bank in banks %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <th scope="col-1">{{ bank.bic }}</th>
+                <th scope="col-1">{{ bank.ogrn }}</th>
+                <th scope="col-1">{{ bank.reg_date }}</th>
+                <th scope="col-1">{{ bank.name }}</th>
+                <th scope="col-1">{{ bank.cregnr }}</th>
+                <th scope="col-1">{{ bank.reg_number }}</th>
+                <th scope="col-1">{{ bank.internal_number }}</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}

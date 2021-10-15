@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block meta_description %}
+<meta name="description" content="Список регионов Росссии по данным ЦБ РФ. Геоданные" />
+{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href='{% static "pages/index.css" %}'>{% endblock %}
+{% block content %}
+
+{% csrf_token %}
+<h1 class="custom-button-block custom-button-block row align-items-center mt-3">{{ title }}</h1>
+<div class="row align-items-center">
+  <table class="table mt-5">
+    <thead>
+      <tr>
+        <th scope="col-1">#</th>
+        <th scope="col-1">Код</th>
+        <th scope="col-1">Наименование региона</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for region  in regions %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ region.code }}</td>
+          <td>{{ region.name }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}

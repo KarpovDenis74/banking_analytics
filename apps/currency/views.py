@@ -26,10 +26,9 @@ class CurrencyMode:
         """
         now_date = datetime.date.today()
         now_date_string = now_date.strftime('%d/%m/%Y')
-        print(f'Текущая дата: {now_date_string}')
         params = {'date_req': now_date_string}
         response = requests.get(CurrencyMode.url_currency, params=params)
-        file_name = (f'{CurrencyMode.dirs["currency"]}/'
+        file_name = (f'{CurrencyMode.dirs.get("currency")}/'
                      f'{now_date.strftime("%Y_%m_%d")}.currency')
         with open(file_name, 'w+', encoding="utf-8") as file:
             file.write(response.text)
@@ -42,7 +41,6 @@ class CurrencyMode:
         root = tree.getroot()
         date_rate_str = str(root.attrib.get('Date'))  # Date="31.08.2021"
         date_rate = datetime.datetime.strptime(date_rate_str, "%d.%m.%Y")
-        print(date_rate)
         for child in root.findall('Valute'):
             num_code = int(child.find('NumCode').text)
             char_code = str(child.find('CharCode').text)

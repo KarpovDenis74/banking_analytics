@@ -26,8 +26,8 @@
                 aria-expanded="false">Банки</a>
               <ul class="dropdown-menu" aria-labelledby="dropdown04">
                 <li><a class="dropdown-item" href="{% url 'banks:index' %}">Список </a></li>
-                <li><a class="dropdown-item disabled" href="#">Запросить информацию в ЦБ</a></li>
-                <li><a class="dropdown-item disabled" href="#">Динамика показателей банков</a></li>
+                <li><a class="dropdown-item" href="{% url 'banks:get_regions' %}">Запросить список регионов в ЦБ</a></li>
+                <li><a class="dropdown-item" href="{% url 'banks:get_enum_bic' %}">Получить список БИКов банков</a></li>
               </ul>
             </li>
             <li class="nav-item">
