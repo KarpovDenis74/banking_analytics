@@ -6,3 +6,4 @@ COPY ../ .
 
 # RUN python manage.py collectstatic --noinput
 CMD gunicorn banking_analytics.wsgi:application --bind 0.0.0.0:8000
+CMD celery -A banking_analytics worker -l info

@@ -18,7 +18,6 @@ services:
   web:
     image: fotokarpov/analitik:v1.0
     restart: always
-    command: celery -A banking_analytics worker -l info
     volumes:
       - static:/code/static/
       - media:/code/media/
