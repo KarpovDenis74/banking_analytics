@@ -1,11 +1,7 @@
-import datetime
-import xml.etree.ElementTree as ET
-
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 
 from apps.banks.models import Bank, Region
-from apps.banks.utils.cbrf import CBRF_query
 
 from apps.banks.tasks import set_regions, set_bics
 

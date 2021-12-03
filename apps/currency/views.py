@@ -1,7 +1,5 @@
 import datetime
-import xml.etree.ElementTree as ET
 
-import requests
 from django.conf import settings
 # from django.core.paginator import Paginator
 from django.shortcuts import render

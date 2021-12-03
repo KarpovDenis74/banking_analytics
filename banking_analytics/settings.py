@@ -181,7 +181,7 @@ SITE_NAME = 'analitik.online'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Celery Configuration Options
-CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT +'/0'
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
 CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 CELERY_ACCERT_CONTENT = ['application/json']
