@@ -3,6 +3,10 @@ version: '3.3'
 
 
 services:
+  redis:
+    image: "redis:alpine"
+    restart: always
+
   db:
     image: postgres:12.4
     restart: always
@@ -14,13 +18,25 @@ services:
   web:
     image: fotokarpov/analitik:v1.0
     restart: always
+    command: celery -A banking_analytics worker -l info
     volumes:
       - static:/code/static/
       - media:/code/media/
     depends_on:
       - db
+      - redis
     env_file:
       - ./.env
+  
+  # celery:
+  #   image: "celery:5.1.2"
+  #   restart: always
+  #   command: celery -A banking_analytics worker -l info
+  #   volumes:
+  #     - celery:/code/
+  #   depends_on:
+  #     - web
+  #     - redis
   
   nginx:
     image: nginx:1.19.3
@@ -39,3 +55,4 @@ volumes:
   postgres_data:
   static:
   media:
+  # celery:

@@ -68,6 +68,11 @@ if DEBUG:
     # EMAIL_TIMEOUT
     # EMAIL_SSL_KEYFILE
     # EMAIL_SSL_CERTFILE
+
+    # подключаем Redis
+    REDIS_HOST = os.getenv('DEBUG_REDIS_HOST')
+    REDIS_PORT = os.getenv('DEBUG_REDIS_PORT')
+
 else:
     INSTALLED_APPS += USER_APPS
     DATABASES = {
@@ -91,6 +96,10 @@ else:
     # EMAIL_TIMEOUT
     # EMAIL_SSL_KEYFILE
     # EMAIL_SSL_CERTFILE
+
+    # подключаем Redis
+    REDIS_HOST = os.getenv('REDIS_HOST')
+    REDIS_PORT = os.getenv('REDIS_PORT')
 
 ROOT_URLCONF = 'banking_analytics.urls'
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
@@ -169,5 +178,14 @@ LOGOUT_REDIRECT_URL = 'index'
 AUTH_USER_MODEL = 'users.User'
 
 SITE_NAME = 'analitik.online'
-
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# Celery Configuration Options
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT +'/0'
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_ACCERT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
