@@ -25,12 +25,15 @@ INSTALLED_APPS = [
     'corsheaders',
     'captcha',
     'django.contrib.sites',
+    'sorl.thumbnail',
 ]
 USER_APPS = [
     'apps.api',
     'apps.currency',
     'apps.banks',
     'apps.users',
+    'apps.news',
+    'apps.core',
 ]
 
 MIDDLEWARE = [

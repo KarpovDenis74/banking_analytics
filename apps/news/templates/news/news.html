@@ -1,0 +1,52 @@
+Х: учеутвы ЭифыуюреьдЭ :Ъ
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block meta_description %}
+<meta name="description" content="Актуальные курсы валют, динамика, графики, новости. Данные ЦБ." />
+{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href='{% static "pages/index.css" %}'>{% endblock %}
+{% block content %}
+
+{% csrf_token %}
+<h1 class="custom-button-block custom-button-block row align-items-center mt-3">{{ title }}</h1>
+
+<div class="row">
+  <div class="col-md-3 mt-5">
+    <div id="cur_list">
+      {% for new in news %}
+      <div class="row justify-content-center card-list">
+        <div class="card" data-id="{{ new.pk }}">
+          <!-- Отображение картинки -->
+          {% load thumbnail %}
+          {% thumbnail new.image "400x400" crop="center" upscale=True as im %}
+          <a href="{% url 'news:detail' news_id=new.pk %}" class="link" target="_blank"><img src="{{ im.url }}"
+              alt="Изображение пока не загружено автором" class="card__image"></a>
+          {% endthumbnail %}
+          {{ new.title}}
+          <div class="card__body">
+            <a class="card__title link" href="{% url 'news:detail' news_id=new.pk %}"
+              target="_blank">{{ new.text }}</a>
+    
+            <div class="card__items card__items_column">
+              <p class="card__text"><span class="icon-time"></span> {{ new.update_news }} </p>
+            </div>
+          </div>
+          <div class="card__footer">
+    
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static '/js/config/config.js' %}"></script>
+<script src="{% static '/js/utils/debouncing.js' %}"></script>
+<script src="{% static '/js/api/Api.js' %}"></script>
+<script src="{% static 'currency.js' %}"></script>
+{% endblock %}

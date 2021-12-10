@@ -11,22 +11,37 @@
 {% csrf_token %}
 <h1 class="custom-button-block custom-button-block row align-items-center mt-3">{{ title }}</h1>
 <div class="row align-items-center">
-  <div class="col-sm-2 mt-3">
-    <h4 class="">Дата</h4>
-  </div>
-  <div class="col-md-3 col-lg-2 mt-3">
-    <input id="cur__date" class="form-control form-control-lg  custom-button-block" type="date" name="calendar"
-      value="{{ rate_date }}">
-  </div>
+  <table class="table mt-5">
+    <thead>
+      <tr>
+        <th scope="col-1">#</th>
+        <th scope="col-1">БИК</th>
+        <th scope="col-1">ОГРН</th>
+        <th scope="col-1">Дата регистрации</th>
+        <th scope="col-1">Наименование</th>
+        <th scope="col-1">Рег номер *</th>
+        <th scope="col-1">Рег номер</th>
+        <th scope="col-1">Внутренний номер</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for bank in banks %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <th scope="col-1">{{ bank.bic }}</th>
+        <th scope="col-1">{{ bank.ogrn }}</th>
+        <th scope="col-1">{{ bank.reg_date }}</th>
+        <th scope="col-1">{{ bank.name }}</th>
+        <th scope="col-1">{{ bank.cregnr }}</th>
+        <th scope="col-1">{{ bank.reg_number }}</th>
+        <th scope="col-1">{{ bank.internal_number }}</th>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
-<div class="row">
-  <div class="col-md-3 mt-5">
-    {% include 'banks/banks_list_currency.html' %}
-  </div>
-  <div class="col">
-    {% include 'banks/banks_data_currency.html' %}
-  </div>   
-</div>
+
 {% endblock %}
 
 {% block js %}

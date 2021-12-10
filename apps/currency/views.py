@@ -14,6 +14,11 @@ class CurrencyMode:
         context = {}
         return render(request, 'currency/get_currency_for_day.html', context)
 
+    def get_currency_for_day_test(request):
+        tasks.set_currency_test()
+        context = {}
+        return render(request, 'currency/get_currency_for_day.html', context)
+
 
 class CurrencyView:
     def index(request):

@@ -14,7 +14,6 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from apps.banks import views
-from apps.currency.views import CurrencyView
 from django.conf import settings
 from django.conf.urls import handler404, handler500
 from django.conf.urls.static import static
@@ -51,7 +50,8 @@ urlpatterns = [
     path('banks/', include('apps.banks.urls', namespace='banks')),
     path('currency/', include('apps.currency.urls', namespace='currency')),
     path('api/', include('apps.api.urls')),
-    path('', CurrencyView.index, name='index'),
+    path('news/', include('apps.news.urls', namespace='news')),
+    path('', include('apps.core.urls', namespace='core')),
 ]
 
 

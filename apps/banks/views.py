@@ -8,11 +8,22 @@ from apps.banks.tasks import set_regions, set_bics
 
 class BankView:
     def index(request):
+        banks = Bank.objects.all()
         context = {
             'title': 'Кредитные организации',
             'header': 'Банки',
+            'banks': banks,
         }
         return render(request, 'banks/banks.html', context)
+
+    def view_regions(request):
+        regions = Region.objects.all()
+        context = {
+            'title': 'Регионы',
+            'header': 'Список регионов',
+            'regions': regions,
+        }
+        return render(request, 'banks/get_regions.html', context)
 
 
 class CBRF:

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block meta_description %}
+<meta name="description" content="Актуальные курсы валют, динамика, графики, новости. Данные ЦБ." />
+{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href='{% static "pages/index.css" %}'>{% endblock %}
+{% block content %}
+
+{% csrf_token %}
+<h1 class="custom-button-block custom-button-block row align-items-center mt-3">{{ title }}</h1>
+<div class="row align-items-center">
+  
+</div>
+<div class="row">
+  <div class="col-12 col-md-3">
+    {% include 'core/core_news.html' %}
+  </div>
+  <div class="col-md-9">
+    {% include 'core/core_data.html' %}
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static '/js/config/config.js' %}"></script>
+<script src="{% static '/js/utils/debouncing.js' %}"></script>
+<script src="{% static '/js/api/Api.js' %}"></script>
+<script src="{% static 'currency.js' %}"></script>
+{% endblock %}

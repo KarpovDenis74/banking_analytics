@@ -1,0 +1,46 @@
+<h4 class="center ">Сервисы сайта</h4>
+
+<div class="card mb-3 mt-1 shadow-sm">
+  <div class="card__body">
+    <a class="card__title link" href="{% url 'banks:index' %}" target="_blank">
+      <p> Информация о кредитных организациях</p>
+    </a>
+
+    <div class="card__items card__items_column">
+      <p class="card__text">
+        <ul>
+          <li>Информация о банках</li>
+          <li>Сравнительная информация за период</li>
+          <li>Рейтинги банков по отдельным показателям</li>
+        </ul>
+      </p>
+    </div>
+  </div>
+  <p class="card__footer">
+        <a class="btn btn-secondary" href="{% url 'banks:index' %}">
+          Список БИК банков
+        </a>
+  </p>
+</div>
+<div class="card mb-3 mt-1 shadow-sm">
+  <div class="card__body">
+    <a class="card__title link" href="{% url 'currency:index' %}" target="_blank">
+      <p>Курсы валют</p>
+    </a>
+  
+    <div class="card__items card__items_column">
+      <p class="card__text">
+      <ul>
+        <li>Котировки курсов валют</li>
+        <li>Анализ котировок по датам и за период</li>
+        <li>Сравнение динамики курсов валют</li>
+      </ul>
+      </p>
+    </div>
+  </div>
+  <p class="card__footer">
+    <a class="btn btn-secondary" href="{% url 'currency:index' %}">
+      Динамика валют
+    </a>
+  </p>
+</div>
