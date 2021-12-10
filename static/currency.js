@@ -21,7 +21,7 @@ const cbEventSelect = (elem) => {
     return api.getCurrencyList(date = rateDate.value, num_code = select).then(e => {
         non_data = `<tr>
                         <th scope="row">-</th>
-                        <td>Нет данных по заданным параментрам</td>
+                        <td>Нет данных по заданным параметрам</td>
                         <td></td>
                         <td></td>
                     </tr>`;
