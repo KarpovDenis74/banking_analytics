@@ -54,9 +54,14 @@
               </span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdown04">
-              <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
-              <li><a class="dropdown-item" href="{% url 'password_change' %}">Сменить пароль</a></li>
-              <li><a class="dropdown-item disabled" href="#">Кабинет пользователя</a></li>
+              {% if user.is_autentificate %}
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
+                <li><a class="dropdown-item" href="{% url 'password_change' %}">Сменить пароль</a></li>
+                <li><a class="dropdown-item disabled" href="#">Кабинет пользователя</a></li>
+              {% else %}
+                <li><a class="dropdown-item" href="{% url 'login' %}">Войти</a></li>
+                <li><a class="dropdown-item" href="{% url 'signup' %}">Зарегистрироваться</a></li>
+              {% endif %}
             </ul>
           </li>
         </ul>
