@@ -54,7 +54,7 @@
               </span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdown04">
-              {% if user.is_autentificate %}
+              {% if request.user.is_authenticated %}
                 <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
                 <li><a class="dropdown-item" href="{% url 'password_change' %}">Сменить пароль</a></li>
                 <li><a class="dropdown-item disabled" href="#">Кабинет пользователя</a></li>
