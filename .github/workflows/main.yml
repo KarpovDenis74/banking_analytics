@@ -19,7 +19,7 @@ jobs:
         pip install flake8
         pip install -r requirements.txt
     - name: Install enviroment
-      script: |
+      run: |
         export DB_ENGINE=${{ secrets.DB_ENGINE }}
         export DB_NAME=${{ secrets.DB_NAME }}
         export POSTGRES_USER=${{ secrets.POSTGRES_USER }}
