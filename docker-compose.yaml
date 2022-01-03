@@ -26,6 +26,7 @@ services:
       - redis
     env_file:
       - ./.env
+    entrypoint: /code/start.sh
   
   # celery:
   #   image: "celery:5.1.2"

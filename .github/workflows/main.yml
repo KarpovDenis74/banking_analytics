@@ -12,7 +12,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.8
-
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -31,8 +30,7 @@ jobs:
         echo DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_SUPERUSER_EMAIL }} >> .env
         echo DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }} >> .env
         echo REDIS_HOST=${{ secrets.REDIS_HOST }} >> .env
-        echo REDIS_PORT=${{ secrets.REDIS_PORT }} >> .env
-            
+        echo REDIS_PORT=${{ secrets.REDIS_PORT }} >> .env           
     - name: Lint with flake8 
       run: flake8 .
     - name: Test with unitest
