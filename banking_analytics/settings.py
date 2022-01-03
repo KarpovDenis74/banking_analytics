@@ -76,6 +76,7 @@ if DEBUG:
     REDIS_HOST = os.getenv('DEBUG_REDIS_HOST')
     REDIS_PORT = os.getenv('DEBUG_REDIS_PORT')
 
+
 else:
     INSTALLED_APPS += USER_APPS
     DATABASES = {
