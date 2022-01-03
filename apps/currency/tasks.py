@@ -9,7 +9,6 @@ from apps.currency.utils.cbrf import CBRF_query_currency
 
 @app.task
 def set_currency():
-    print('set_currency  - begined')
     file_name = CBRF_query_currency.get_file_currency()
     parser = ET.XMLParser(encoding="utf-8")
     tree = ET.parse(file_name, parser=parser)

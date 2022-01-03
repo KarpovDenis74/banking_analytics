@@ -1,5 +1,6 @@
-import requests
 import datetime
+
+import requests
 
 
 class CBRF_query:
@@ -7,6 +8,7 @@ class CBRF_query:
     dirs = {
         'EnumBIC': 'apps/banks/cbr_data/EnumBIC',
         'EnumRegions': 'apps/banks/cbr_data/EnumRegions',
+        'Data101FullV2XML': 'apps/banks/cbr_data/Data101FullExV2',
     }
     body = {
         'EnumRegions': ('<?xml version="1.0" encoding="utf-8"?>'
@@ -29,6 +31,22 @@ class CBRF_query:
                     '</soap12:Body>'
                     '</soap12:Envelope>'
                     ),
+        'Data101FullV2XML': ('<?xml version="1.0" encoding="utf-8"?>'
+                             '<soap12:Envelope xmlns:xsi="http://www.w3.org'
+                             '/2001/XMLSchema-instance" xmlns: xsd='
+                             '"http://www.w3.org/2001/XMLSchema" '
+                             'xmlns: soap12='
+                             '"http://www.w3.org/2003/05/soap-envelope" >'
+                             '<soap12:Body>'
+                             '<Data101FullV2XML xmlns="http://web.cbr.ru/" >'
+                             '<CredorgNumber>2896</CredorgNumber>'
+                             '<IndCode>202</IndCode>'
+                             '<DateFrom>2017-08-01T00:00:00+03:00</DateFrom>'
+                             '<DateTo>2017-09-01T00:00:00+03:00</DateTo>'
+                             '</Data101FullV2XML>'
+                             '</soap12:Body>'
+                             '</soap12:Envelope>'
+                             ),
     }
 
     def _save_to_file(method, data):
