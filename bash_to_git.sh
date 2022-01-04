@@ -19,4 +19,4 @@ git status
 git add .
 read -p 'Введите комментарий для текущего коммита: ' commit_text
 git commit -m "$commit_text"
-git push git push git@github.com:KarpovDenis74/banking_analytics.git
+git push git@github.com:KarpovDenis74/banking_analytics.git
