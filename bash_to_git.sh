@@ -1,18 +1,21 @@
 #!/bin/bash
+echo
+echo
+echo
 flake8
 if [ $? -eq 0 ]
 then
-  echo "flake8:   - ОК"
+  echo "----------- flake8:   - ОК"
 else
-  echo "Не пройдено тестирование:   - flake8"
+  echo "??? ----------- Не пройдено тестирование:   - flake8"
   exit 1
 fi
 python manage.py test
 if [ $? -eq 0 ]
 then
-  echo "python manage.py test:   - ОК"
+  echo "----------- python manage.py test:   - ОК"
 else
-  echo "Не пройдено тестирование:   - python manage.py test"
+  echo "??? ----------- Не пройдено тестирование:   - python manage.py test"
   exit 1
 fi
 git status

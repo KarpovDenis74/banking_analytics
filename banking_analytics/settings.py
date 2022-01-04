@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
 ]
 USER_APPS = [
+    'apps.cbrf',
     'apps.api',
     'apps.currency',
     'apps.banks',

@@ -1,7 +1,7 @@
-from celery.schedules import crontab
 import os
 
 from celery import Celery
+from celery.schedules import crontab
 
 # Set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'banking_analytics.settings')
@@ -19,9 +19,12 @@ app.autodiscover_tasks()
 
 
 app.conf.beat_schedule = {
-    """Запускать каждый час """
+    """
+        Запускать каждые 2 часа.
+        Делаем запрос к ЦБ РФ и записываем актуальные данный по курсам валют
+    """
     'add-currency': {
-        'task': 'apps.currency.tasks.set_currency',
-        'schedule': crontab(minute=0, hour='*/1'),
+        'task': 'apps.currency.tasks.get_currency',
+        'schedule': crontab(minute=0, hour='*/2'),
     },
 }
