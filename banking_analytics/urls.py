@@ -13,7 +13,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from apps.banks import views
 from django.conf import settings
 from django.conf.urls import handler404, handler500
 from django.conf.urls.static import static
@@ -22,9 +21,10 @@ from django.urls import include, path, re_path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
+from apps.core.views import AuthorPage, TeсhnologiesPage
 
-handler404 = "apps.banks.views.page_not_found"   # noqa
-handler500 = "apps.banks.views.server_error"     # noqa
+handler404 = "apps.core.views.page_not_found"   # noqa
+handler500 = "apps.core.views.server_error"     # noqa
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -44,13 +44,14 @@ urlpatterns = [
     path('auth/', include('apps.users.urls')),
     path('admin/', admin.site.urls),
     path('captcha/', include('captcha.urls')),
-    path('about/', views.AuthorPage.as_view(), name='about'),
-    path('teсhnologies/', views.TeсhnologiesPage.as_view(),
+    path('about/', AuthorPage.as_view(), name='about'),
+    path('teсhnologies/', TeсhnologiesPage.as_view(),
          name='teсhnologies'),
     path('banks/', include('apps.banks.urls', namespace='banks')),
     path('currency/', include('apps.currency.urls', namespace='currency')),
     path('api/', include('apps.api.urls')),
     path('news/', include('apps.news.urls', namespace='news')),
+    path('cbrf/', include('apps.cbrf.urls', namespace='cbrf')),
     path('', include('apps.core.urls', namespace='core')),
 ]
 

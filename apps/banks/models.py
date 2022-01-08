@@ -55,7 +55,8 @@ class Region(models.Model):
         max_length=1000,
     )
     code = models.PositiveSmallIntegerField(
-        verbose_name='Код региона'
+        verbose_name='Код региона',
+        unique=True
     )
 
     def __str__(self):
@@ -63,3 +64,32 @@ class Region(models.Model):
 
     class Meta:
         ordering = ['name']
+
+
+class BalanceAccount(models.Model):
+    # Например, 202 или 20202
+    indCode = models.CharField(
+        verbose_name='Номер счета',
+        max_length=30,
+        unique=True
+    )
+    name = models.CharField(
+        verbose_name='Название счетов баланса',
+        max_length=1000,
+    )
+    # Порядок балансового счета (1 или 2)
+    indType = models.CharField(
+        verbose_name='Код счета',
+        max_length=30,
+    )
+    # Например, Раздел  - "А"
+    indChapter = models.CharField(
+        verbose_name='Код раздела',
+        max_length=30,
+    )
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        ordering = ['indCode']

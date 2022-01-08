@@ -10,12 +10,7 @@ from apps.currency import tasks
 
 class CurrencyMode:
     def get_currency_for_day(request):
-        tasks.set_currency.delay()
-        context = {}
-        return render(request, 'currency/get_currency_for_day.html', context)
-
-    def get_currency_for_day_test(request):
-        tasks.set_currency_test()
+        tasks.get_currency.delay()
         context = {}
         return render(request, 'currency/get_currency_for_day.html', context)
 

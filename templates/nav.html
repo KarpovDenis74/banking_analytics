@@ -16,15 +16,16 @@
             <a class="nav-link dropdown-toggle" href="" id="dropdown04" data-toggle="dropdown" aria-expanded="false">Справочники</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown04">
               <li><a class="dropdown-item" href="{% url 'currency:index' %}">Курсы</a></li>
-              <li><a class="dropdown-item" href="{% url 'banks:index' %}">Список банков</a></li>
+              <li><a class="dropdown-item" href="{% url 'banks:view_bic' %}">Список банков</a></li>
               <li><a class="dropdown-item" href="{% url 'banks:view_regions' %}">Список регионов</a></li>
+              <li><a class="dropdown-item" href="{% url 'banks:view_accounts' %}">Список балансовых счетов></a></li>
             </ul>
           </li>          
           <li class="nav-item active">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
               aria-expanded="false">Банки</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown04">
-              <li><a class="dropdown-item" href="{% url 'banks:index' %}">Список </a></li>
+              <li><a class="dropdown-item" href="{% url 'banks:view_bic' %}">Список </a></li>
             </ul>
           </li>
           {% if user.is_staff %}
