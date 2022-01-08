@@ -33,10 +33,12 @@
               <a class="nav-link dropdown-toggle" href="" id="dropdown04" data-toggle="dropdown" aria-expanded="false">Запросы в
                 ЦБ</a>
               <ul class="dropdown-menu" aria-labelledby="dropdown04">
+                <!--
                 <li><a class="dropdown-item" href="{% url 'currency:get_currency_for_day' %}">Запросить курсы в ЦБ</a></li>
                 <li><a class="dropdown-item" href="{% url 'banks:get_regions' %}">Запросить актуальный список регионов в ЦБ</a></li>
-                <li><a class="dropdown-item" href="{% url 'banks:get_enum_bic' %}">Запросить актуальный список БИКов банков</a></li>
-                <li><a class="dropdown-item" href="{% url 'banks:get_form_101' %}">Запросить 101 форму</a></li>
+                <li><a class="dropdown-item" href="{% url 'banks:get_bics' %}">Запросить актуальный список БИКов банков</a></li>
+                <li><a class="dropdown-item" href="{% url 'banks:get_accounts' %}">Запросить список счетов</a></li>
+                -->
               </ul>
             </li>
           {% endif %}
