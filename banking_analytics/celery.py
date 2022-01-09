@@ -24,15 +24,15 @@ app.conf.beat_schedule = {
     """
     'add-currency': {
         'task': 'apps.currency.tasks.get_currency',
-        'schedule': crontab(minute='4', hour='*/1'),
+        'schedule': crontab(minute=4, hour='*/1'),
     },
     """
         Обновление балансовых счетов
     """
     'add-balance-accounts': {
         'task': 'apps.banks.tasks.get_accounts',
-        'schedule': crontab(minute='1',
-                            hour='1',
+        'schedule': crontab(minute=1,
+                            hour=1,
                             day_of_month='1,10,20',
                             month_of_year='*/1'),
     },
@@ -41,8 +41,8 @@ app.conf.beat_schedule = {
     """
     'add-regions': {
         'task': 'apps.banks.tasks.get_regions',
-        'schedule': crontab(minute='1',
-                            hour='2',
+        'schedule': crontab(minute=1,
+                            hour=2,
                             day_of_month='1,2,27',
                             month_of_year='*/1'),
     },
@@ -51,8 +51,8 @@ app.conf.beat_schedule = {
     """
     'add-bics': {
         'task': 'apps.banks.tasks.get_bics',
-        'schedule': crontab(minute='1',
-                            hour='3',
+        'schedule': crontab(minute=1,
+                            hour=3,
                             day_of_month='3,4,28',
                             month_of_year='*/1'),
     },
