@@ -10,7 +10,7 @@ else
   echo "??? ----------- Не пройдено тестирование:   - flake8"
   exit 1
 fi
-python manage.py test
+python manage.py test apps -v 2
 if [ $? -eq 0 ]
 then
   echo "----------- python manage.py test:   - ОК"

@@ -1,6 +1,6 @@
 from datetime import datetime as dt
 
-from currency.models import Currency, CurrencyRate
+from apps.currency.models import Currency, CurrencyRate
 from django.test import TestCase
 
 
