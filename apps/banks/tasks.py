@@ -4,7 +4,7 @@ from pathlib import Path
 
 from banking_analytics.celery import app
 
-from apps.banks.models import Bank, Region, BalanceAccount
+from apps.banks.models import BalanceAccount, Bank, Region
 from apps.cbrf.views import CBRF
 
 

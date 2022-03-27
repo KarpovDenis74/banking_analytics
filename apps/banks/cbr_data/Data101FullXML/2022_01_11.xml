@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <Data101FullXMLResponse xmlns="http://web.cbr.ru/">
+            <Data101FullXMLResult>
+                <F101DATA xmlns="">
+                    <FDF>
+                        <dt>2021-10-01T00:00:00+03:00</dt>
+                        <pln>А</pln>
+                        <ap>1</ap>
+                        <vr>15972688</vr>
+                        <vv>56129218</vv>
+                        <vitg>72101906.0000</vitg>
+                        <ora>199530069</ora>
+                        <ova>85693564</ova>
+                        <oitga>285223633.0000</oitga>
+                        <orp>198015254</orp>
+                        <ovp>81974023</ovp>
+                        <oitgp>279989277.0000</oitgp>
+                        <ir>17487503</ir>
+                        <iv>59848759</iv>
+                        <iitg>77336262.0000</iitg>
+                    </FDF>
+                    <FDF>
+                        <dt>2021-11-01T00:00:00+03:00</dt>
+                        <pln>А</pln>
+                        <ap>1</ap>
+                        <vr>17487503</vr>
+                        <vv>59848759</vv>
+                        <vitg>77336262.0000</vitg>
+                        <ora>174616418</ora>
+                        <ova>62840691</ova>
+                        <oitga>237457109.0000</oitga>
+                        <orp>175866411</orp>
+                        <ovp>66051078</ovp>
+                        <oitgp>241917489.0000</oitgp>
+                        <ir>16237510</ir>
+                        <iv>56638372</iv>
+                        <iitg>72875882.0000</iitg>
+                    </FDF>
+                    <FDF>
+                        <dt>2021-12-01T00:00:00+03:00</dt>
+                        <pln>А</pln>
+                        <ap>1</ap>
+                        <vr>16237510</vr>
+                        <vv>56638372</vv>
+                        <vitg>72875882.0000</vitg>
+                        <ora>161661441</ora>
+                        <ova>48790209</ova>
+                        <oitga>210451650.0000</oitga>
+                        <orp>161356583</orp>
+                        <ovp>45484245</ovp>
+                        <oitgp>206840828.0000</oitgp>
+                        <ir>16542368</ir>
+                        <iv>59944336</iv>
+                        <iitg>76486704.0000</iitg>
+                    </FDF>
+                    <TablesExtendedProperties>
+                        <Table TableName="FD" Caption="Форма N101" />
+                        <Table TableName="FDF" Caption="Код формы по ОКУД 0409101 " />
+                    </TablesExtendedProperties>
+                </F101DATA>
+            </Data101FullXMLResult>
+        </Data101FullXMLResponse>
+    </soap:Body>
+</soap:Envelope>

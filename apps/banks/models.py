@@ -1,5 +1,9 @@
+from statistics import mode
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import UniqueConstraint
+from django.db.models.deletion import CASCADE
+
 
 User = get_user_model()
 
@@ -93,3 +97,57 @@ class BalanceAccount(models.Model):
 
     class Meta:
         ordering = ['indCode']
+
+
+class BanksBalance(models.Model):
+    date = models.DateField(
+        verbose_name="Балансовые данные на дату",
+    )
+    bank = models.ForeignKey(Bank,
+        verbose_name="Банк",
+        on_delete=CASCADE,
+        blank=False,
+    )
+    # Например, 202 или 20202
+    indCode = models.ForeignKey(BalanceAccount,
+        verbose_name="Номер счета",
+        on_delete=CASCADE,
+        blank=False,
+    )
+    rub_balance = models.IntegerField(
+        verbose_name='Остаток в рублях на дату',
+    )
+    cur_balance = models.IntegerField(
+        verbose_name='Остаток в валюте на дату',
+    )
+    itog_balance = models.IntegerField(
+        verbose_name='Итоговый остаток в рублях и в валюте на дату',
+    )
+    ora = models.IntegerField(
+        verbose_name='Оборот в рублях по дебиту',
+    )
+    ova = models.IntegerField(
+        verbose_name='Оборот в валюте по дебиту',
+    )
+    oitga = models.IntegerField(
+        verbose_name='Итоговый оборот в рублях и в валюте по дебету',
+    )
+    orp = models.IntegerField(
+        verbose_name='Оборот в рублях по кредиту',
+    )
+    ovp = models.IntegerField(
+        verbose_name='Оборот в валюте по кредиту',
+    )
+    oitgp = models.IntegerField(
+        verbose_name='Итоговый оборот в рублях и в валюте по кредиту',
+    )
+
+    def __str__(self):
+        return f'{self.value} :  {self.indCode}     {self.itog_balance}'
+
+    class Meta:
+        UniqueConstraint(fields=['date', 'indCode', 'bank'],
+                         name='unique_date_indCode_bank')
+        verbose_name = 'Остатки на дату и обороты за предыдущий период'
+        verbose_name_plural = 'Остатки на дату и обороты за предыдущий период'
+        ordering = ['-date']

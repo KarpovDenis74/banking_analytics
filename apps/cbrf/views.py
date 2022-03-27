@@ -105,6 +105,90 @@ class CBRF:
                     '/EnumBIC'
                     '/BIC'
         },
+        'Data101FullV2XML': {
+            'endpoint': 'http://www.cbr.ru/CreditInfoWebServ/'
+                        'CreditOrgInfo.asmx',
+            'body': ('<?xml version="1.0" encoding="utf-8"?>'
+                     '<soap12:Envelope xmlns:xsi="http://www.w3.org/'
+                     '2001/XMLSchema-instance" xmlns:xsd='
+                     '"http://www.w3.org/2001/XMLSchema" '
+                     'xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" >'
+                     '<soap12:Body>'
+                     '<Data101FullV2XML xmlns="http://web.cbr.ru/" >'
+                     '<CredorgNumber>354</CredorgNumber>'
+                     '<IndCode>10901</IndCode>'
+                     '<DateFrom>2022-02-01</DateFrom>'
+                     '<DateTo>2022-02-01</DateTo>'
+                     '</Data101FullV2XML>'
+                     '</soap12:Body>'
+                     '</soap12:Envelope>'
+                     ),
+            'ns': {'soap': 'http://www.w3.org/2003/05/soap-envelope',
+                   '1': 'http://web.cbr.ru/',
+                   '2': 'urn:schemas-microsoft-com:xml-diffgram-v1',
+                   },
+            'root': './soap:Body'
+                    '/1:EnumBICResponse'
+                    '/1:EnumBICResult'
+                    '/2:diffgram'
+                    '/EnumBIC'
+                    '/BIC'
+        },
+        'Data101FOldXML': {
+            'endpoint': 'http://www.cbr.ru/CreditInfoWebServ/'
+                        'CreditOrgInfo.asmx',
+            'body': ('<?xml version="1.0" encoding="utf-8"?>'
+                     '<soap12:Envelope xmlns:xsi='
+                     '"http://www.w3.org/2001/XMLSchema-instance" '
+                     'xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:'
+                     'soap12="http://www.w3.org/2003/05/soap-envelope" >'
+                     '<soap12:Body>'
+                     '<Data101FOldXML xmlns="http://web.cbr.ru/" >'
+                     '<when>2</when>'
+                     '</Data101FOldXML>'
+                     '</soap12:Body>'
+                     '</soap12:Envelope>'
+                     ),
+            'ns': {'soap': 'http://www.w3.org/2003/05/soap-envelope',
+                   '1': 'http://web.cbr.ru/',
+                   '2': 'urn:schemas-microsoft-com:xml-diffgram-v1',
+                   },
+            'root': './soap:Body'
+                    '/1:EnumBICResponse'
+                    '/1:EnumBICResult'
+                    '/2:diffgram'
+                    '/EnumBIC'
+                    '/BIC'
+        },
+        'Data101FullXML': {
+            'endpoint': 'http://www.cbr.ru/CreditInfoWebServ/'
+                        'CreditOrgInfo.asmx',
+            'body': ('<?xml version="1.0" encoding="utf-8"?>'
+                     '<soap12:Envelope xmlns:xsi="http://www.w3.org/'
+                     '2001/XMLSchema-instance" xmlns:xsd='
+                     '"http://www.w3.org/2001/XMLSchema" '
+                     'xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" >'
+                     '<soap12:Body>'
+                     '<Data101FullXML xmlns="http://web.cbr.ru/" >'
+                     '<CredorgNumber>354</CredorgNumber>'
+                     '<IndCode>20202</IndCode>'
+                     '<DateFrom>2021-10-01</DateFrom>'
+                     '<DateTo>2021-12-04</DateTo>'
+                     '</Data101FullXML>'
+                     '</soap12:Body>'
+                     '</soap12:Envelope>'
+                     ),
+            'ns': {'soap': 'http://www.w3.org/2003/05/soap-envelope',
+                   '1': 'http://web.cbr.ru/',
+                   '2': 'urn:schemas-microsoft-com:xml-diffgram-v1',
+                   },
+            'root': './soap:Body'
+                    '/1:EnumBICResponse'
+                    '/1:EnumBICResult'
+                    '/2:diffgram'
+                    '/EnumBIC'
+                    '/BIC'
+        },
     }
 
     def get_currency_today():
@@ -141,7 +225,11 @@ class CBRF:
         session = requests.session()
         session.headers = {"Content-Type": "text/xml; charset=utf-8"}
         session.headers.update({"Content-Length": str(len(body))})
-        response = session.post(url=endpoint,
+        try:
+            response = session.post(url=endpoint,
                                 data=body,
                                 verify=False)
+        except Exception:
+            print('ошибка запроса')
+            pass
         return response

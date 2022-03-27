@@ -1,15 +1,19 @@
 import datetime
 
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 # from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
-from apps.currency.models import Currency, CurrencyRate
 from apps.currency import tasks
+from apps.currency.models import Currency, CurrencyRate
 
 
 class CurrencyMode:
+    @login_required()
     def get_currency_for_day(request):
+        if not request.user.is_staff:
+            return redirect('core:index')
         tasks.get_currency.delay()
         context = {}
         return render(request, 'currency/get_currency_for_day.html', context)
