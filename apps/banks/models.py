@@ -1,4 +1,4 @@
-from statistics import mode
+# from statistics import mode
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import UniqueConstraint
@@ -104,16 +104,16 @@ class BanksBalance(models.Model):
         verbose_name="Балансовые данные на дату",
     )
     bank = models.ForeignKey(Bank,
-        verbose_name="Банк",
-        on_delete=CASCADE,
-        blank=False,
-    )
+                             verbose_name="Банк",
+                             on_delete=CASCADE,
+                             blank=False,
+                             )
     # Например, 202 или 20202
     indCode = models.ForeignKey(BalanceAccount,
-        verbose_name="Номер счета",
-        on_delete=CASCADE,
-        blank=False,
-    )
+                                verbose_name="Номер счета",
+                                on_delete=CASCADE,
+                                blank=False,
+                                )
     rub_balance = models.IntegerField(
         verbose_name='Остаток в рублях на дату',
     )

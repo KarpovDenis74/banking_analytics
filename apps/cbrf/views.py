@@ -227,8 +227,8 @@ class CBRF:
         session.headers.update({"Content-Length": str(len(body))})
         try:
             response = session.post(url=endpoint,
-                                data=body,
-                                verify=False)
+                                    data=body,
+                                    verify=False)
         except Exception:
             print('ошибка запроса')
             pass
