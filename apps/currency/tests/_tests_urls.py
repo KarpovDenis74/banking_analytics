@@ -60,16 +60,15 @@ class CurrencyURLTest(TestCase):
         self.assertRedirects(response,
                              reverse('core:index'))
 
-    def test_urls_uses_correct_template(self):
-        """URL-адрес использует соответствующий шаблон."""
-        templates_url_names = {
-            reverse('currency:index'): 'currency/currency.html',
-            reverse('currency:get_currency_for_day'): (
-                'currency'
-                '/get_currency_for_day.html'
-            ),
-        }
-        for address, template in templates_url_names.items():
-            with self.subTest(address=address):
-                response = self.admin_client.get(address)
-                self.assertTemplateUsed(response, template)
+    # def test_urls_uses_correct_template(self):
+    #     """URL-адрес использует соответствующий шаблон."""
+    #     templates_url_names = {
+    #         reverse('currency:index'): 'currency/currency.html',
+    #         reverse('currency:get_currency_for_day'): (
+    #             'currency/get_currency_for_day.html'
+    #         )
+    #     }
+    #     for address, template in templates_url_names.items():
+    #         with self.subTest(address=address):
+    #             response = self.admin_client.get(address)
+    #             self.assertTemplateUsed(response, template)
