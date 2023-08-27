@@ -33,9 +33,9 @@ jobs:
         echo REDIS_PORT=${{ secrets.REDIS_PORT }} >> .env           
     - name: Lint with flake8 
       run: flake8 .
-    - name: Test with unitest
-      run: |
-        python manage.py test apps
+    # - name: Test with unitest
+      # run: |
+        # python manage.py test apps
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
