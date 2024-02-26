@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block meta_description %}
+<meta name="description" content="{{ meta_description }}" />
+{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href='{% static "pages/index.css" %}'>{% endblock %}
+{% block content %}
+
+{% csrf_token %}
+<h1 class="custom-button-block custom-button-block row align-items-center mt-3">{{ title }}</h1>
+
+<section class="row">
+  <div class="col-md-3 mt-5">
+    <div id="cur_list">
+      {{ text }}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block js %}
+<script src="{% static '/js/config/config.js' %}"></script>
+<script src="{% static '/js/utils/debouncing.js' %}"></script>
+<script src="{% static '/js/api/Api.js' %}"></script>
+<script src="{% static 'currency.js' %}"></script>
+{% endblock %}

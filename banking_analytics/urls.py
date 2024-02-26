@@ -52,6 +52,7 @@ urlpatterns = [
     path('api/', include('apps.api.urls')),
     path('news/', include('apps.news.urls', namespace='news')),
     path('cbrf/', include('apps.cbrf.urls', namespace='cbrf')),
+    path('market/', include('apps.market.urls', namespace='market')),    
     path('', include('apps.core.urls', namespace='core')),
 ]
 

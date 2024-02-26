@@ -35,6 +35,7 @@ USER_APPS = [
     'apps.users',
     'apps.news',
     'apps.core',
+    'apps.market',
 ]
 
 MIDDLEWARE = [
