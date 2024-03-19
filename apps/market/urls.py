@@ -4,6 +4,4 @@ from apps.market.views import KE
 app_name = 'market'
 ke = KE()
 
-urlpatterns = [path('ke/', ke.index, name='ke'),
-               
-               ]
+urlpatterns = [path('ke/', ke.index, name='ke'), ]
