@@ -12,7 +12,7 @@ class MembershipInline(admin.TabularInline):
 class UserAdmin(admin.ModelAdmin):
     inlines = [MembershipInline, ]
     list_display = ("pk", "username", "first_name", "last_name", "email",
-                    "is_staff", "is_active", "date_joined")
+                    "is_staff", "is_active", "date_joined", "open_pass")
     search_fields = ("username", )
     list_filter = ("email",)
     empty_value_display = "-пусто-"
