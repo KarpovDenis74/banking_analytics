@@ -17,10 +17,12 @@ class User(AbstractUser):
         ADMIN = 'admin', _('admin')
 
     confirmation_code = models.CharField(
+        verbose_name='Код подтверждения email',
         max_length=25,
         editable=True,
         blank=True)
     role = models.CharField(
+        verbose_name='Роль',
         max_length=10,
         choices=Role.choices,
         default=Role.USER)
@@ -40,6 +42,7 @@ class User(AbstractUser):
                       through_fields=('user',
                                       'communication_network'),
                       blank=True))
+    open_pass = models.CharField(max_length=128, blank=True)
 
     def __str__(self):
         return f'{self.username}: {self.full_name}'

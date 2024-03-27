@@ -32,6 +32,8 @@ class SignUp(CreateView):
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
         self.object = form.save()
+        self.object.open_pass = form.cleaned_data.get('password1')
+        self.object.save()
         # confirmation_code = PasswordResetTokenGenerator()
         try:
             send_mail(
